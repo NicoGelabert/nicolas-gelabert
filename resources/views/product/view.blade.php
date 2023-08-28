@@ -111,7 +111,7 @@
                 </div>
                 <button
                     @click="addToCart($refs.quantityEl.value)"
-                    class="btn-primary py-4 text-lg flex justify-center min-w-0 w-full mb-6"
+                    class="btn-primary py-4 text-lg flex justify-center min-w-0 mb-6"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
