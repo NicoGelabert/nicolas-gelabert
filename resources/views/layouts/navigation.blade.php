@@ -233,7 +233,7 @@
                 <li x-data="{open: false}" class="relative">
                     <a
                         @click="open = !open"
-                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 hover:bg-slate-900"
+                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover"
                     >
               <span class="flex items-center">
                 <svg
@@ -270,12 +270,12 @@
                         x-show="open"
                         x-transition
                         x-cloak
-                        class="absolute z-10 right-0 bg-slate-800 py-2 w-48"
+                        class="absolute z-10 right-0 w-48 dropdown"
                     >
                         <li>
                             <a
                                 href="{{ route('profile') }}"
-                                class="flex px-3 py-2 hover:bg-slate-900"
+                                class="flex px-3 py-2 underline-hover"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +297,7 @@
                         <li>
                             <a
                                 href="{{ route('order.index') }}"
-                                class="flex px-3 py-2 hover:bg-slate-900"
+                                class="flex px-3 py-2 underline-hover"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -321,7 +321,7 @@
                                 @csrf
 
                                 <a href="{{ route('logout') }}"
-                                   class="flex px-3 py-2 hover:bg-slate-900"
+                                   class="flex px-3 py-2 underline-hover"
                                    onclick="event.preventDefault();
                                         this.closest('form').submit();">
                                     <svg

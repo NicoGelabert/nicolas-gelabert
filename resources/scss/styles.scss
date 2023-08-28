@@ -17,6 +17,11 @@ body{
             border: $black 1px solid;
             color: $black;
         }
+        .dropdown{
+            background-color: $white;
+            padding: 0.5rem 1rem;
+            width: 100%;
+        }
     }
     .btn-primary{
         @apply py-2 px-4 rounded-full shadow-md w-full hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors; 
