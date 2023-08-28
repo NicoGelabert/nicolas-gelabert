@@ -9,7 +9,7 @@
         </div>
     <?php else: ?>
         <div
-            class="grid gap-y-8 gap-x-2 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4"
+            class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 m-4 md:m-8 lg:mx-12"
         >
             @foreach($products as $product)
                 <!-- Product Item -->
@@ -27,22 +27,24 @@
                         <img
                             src="{{ $product->image }}"
                             alt=""
-                            class="card-image object-cover hover:scale-105 hover:rotate-1 transition-transform"
+                            class="card-image object-cover hover:scale-105 hover:rotate-1 transition-transform p-4"
                         />
                         <div class="p-4 card-listing">
-                            <h3>
-                                {{$product->title}}
-                            </h3>
-                            <div class="price-container relative">
-                                <span class="font-number-label">Price</span>
+                            <div>
+                                <h3 class="underline-hover w-fit">
+                                    {{$product->title}}
+                                </h3>
+                            </div>
+                            <div class="price-container relative flex justify-between my-4">
+                                <span class="title font-number-label">Price</span>
                                 <h5 class="font-number">${{$product->price}}</h5>
                             </div>
                         </div>
-                        <button class="btn-primary absolute" @click="addToCart()">
+                        <button class="btn-primary absolute btn-cart-product" @click="addToCart()">
                             <!-- Add to Cart -->
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
+                            
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"

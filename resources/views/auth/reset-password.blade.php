@@ -1,46 +1,47 @@
 <x-app-layout>
-    <div class="w-[400px] mx-auto my-16">
+    <form
+        action="{{ route('password.update') }}"
+        method="POST"
+        class="max-w-[400px] mx-auto p-6 my-16"
+    >
+        @csrf
 
-        <h2 class="text-2xl font-semibold text-center mb-5">
-            Enter your new password
-        </h2>
+        <div class="title mb-8 ">
+            <h3>Enter your new password</h3>
+        </div>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+        <!-- Password Reset Token -->
+        <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+        <!-- Email Address -->
+        <div>
+            <!-- <x-label for="email" :value="__('Email')" class="small-text mb-3"/> -->
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+            <x-input id="email" class="w-full account" type="email" name="email" :value="old('email', $request->email)" required autofocus placeholder="Your Email" />
+        </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-            </div>
+        <!-- Password -->
+        <div class="mt-4">
+            <!-- <x-label for="password" :value="__('Password')" class="small-text mb-3" /> -->
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+            <x-input id="password" class="w-full account" type="password" name="password" required placeholder="Your password"  />
+        </div>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
+        <!-- Confirm Password -->
+        <div class="mt-4">
+            <!-- <x-label for="password_confirmation" :value="__('Confirm Password')" class="small-text mb-3"/> -->
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input id="password_confirmation"  class="w-full account"
+            type="password"
+            name="password_confirmation" required placeholder="Confirm Your password" />
+        </div>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </div>
+        <div class="flex items-center justify-end mt-4">
+            <x-button>
+                {{ __('Reset Password') }}
+            </x-button>
+        </div>
+    </form>
 </x-app-layout>

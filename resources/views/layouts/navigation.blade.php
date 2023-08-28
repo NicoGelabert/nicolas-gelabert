@@ -4,10 +4,14 @@
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
     }"
     @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between bg-slate-800 shadow-md text-white"
+    class="flex justify-between shadow-md"
 >
-    <div>
-        <a href="{{ route('home') }}" class="block py-navbar-item pl-5"> Logo </a>
+    <div class="grid grid-flow-col items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+        </svg>
+        <a href="{{ route('home') }}" class="block py-navbar-item pl-5"> caMWorld </a>
     </div>
     <!-- Responsive Menu -->
     <div
@@ -199,7 +203,7 @@
             <li>
                 <a
                     href="{{ route('cart.index') }}"
-                    class="relative inline-flex items-center py-navbar-item px-navbar-item hover:bg-slate-900"
+                    class="relative inline-flex items-center py-navbar-item px-navbar-item underline-hover"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -344,7 +348,7 @@
                 <li>
                     <a
                         href="{{ route('login') }}"
-                        class="flex items-center py-navbar-item px-navbar-item hover:bg-slate-900"
+                        class="flex items-center py-navbar-item px-navbar-item underline-hover"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -366,7 +370,7 @@
                 <li>
                     <a
                         href="{{ route('register') }}"
-                        class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5"
+                        class="btn-register py-2 px-3 shadow transition-colors mx-5"
                     >
                         Register now
                     </a>

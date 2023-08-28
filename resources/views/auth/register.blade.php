@@ -2,12 +2,14 @@
     <form
         action="{{ route('register') }}"
         method="post"
-        class="w-[400px] mx-auto p-6 my-16"
+        class="max-w-[400px] mx-auto p-6 my-16"
     >
         @csrf
 
-        <h2 class="text-2xl font-semibold text-center mb-4">Create an account</h2>
-        <p class="text-center text-gray-500 mb-3">
+        <div class="title mb-8 ">
+            <h3>Create an account</h3>
+        </div>
+        <!-- <p class="text-center text-gray-500 mb-3">
             or
             <a
                 href="{{ route('login') }}"
@@ -15,28 +17,40 @@
             >
                 login with existing account
             </a>
-        </p>
+        </p> -->
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')"/>
 
         <div class="mb-4">
-            <x-input placeholder="Your name" type="text" name="name" :value="old('name')" />
+            <x-input placeholder="Your name" type="text" name="name" :value="old('name')"  class="w-full account"/>
         </div>
         <div class="mb-4">
-            <x-input placeholder="Your Email" type="email" name="email" :value="old('email')" />
+            <x-input placeholder="Your Email" type="email" name="email" :value="old('email')" class="w-full account" />
         </div>
         <div class="mb-4">
-            <x-input placeholder="Password" type="password" name="password"/>
+            <x-input placeholder="Password" type="password" name="password" class="w-full account"/>
         </div>
         <div class="mb-4">
-            <x-input placeholder="Repeat Password" type="password" name="password_confirmation"/>
+            <x-input placeholder="Repeat Password" type="password" name="password_confirmation" class="w-full account"/>
         </div>
 
-        <button
-            class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full"
-        >
-            Signup
-        </button>
+        <div class="grid grid-cols-3 gap-3 mb-3 items-center">
+            <div class="col-span-2">
+                <button
+                    class="btn-primary"
+                >
+                    Signup
+                </button>
+            </div>
+            <div class="inline-block">
+                <a
+                    href="{{ route('login') }}"
+                    class="btn-secondary"
+                >
+                    Login
+                </a>
+            </div>
+        </div>
     </form>
 </x-app-layout>
