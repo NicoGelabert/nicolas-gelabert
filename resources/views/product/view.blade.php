@@ -6,8 +6,8 @@
                     'title' => $product->title,
                     'price' => $product->price,
                     'addToCartUrl' => route('cart.add', $product)
-                ]) }})" class="container mx-auto">
-        <div class="grid gap-6 grid-cols-1 lg:grid-cols-5">
+                ]) }})" class="container lg:p-8 mx-auto">
+        <div class="grid gap-12 grid-cols-1 lg:grid-cols-6">
             <div class="lg:col-span-3">
                 <div
                     x-data="{
@@ -29,7 +29,19 @@
                           this.activeImage = this.images.length > 0 ? this.images[0] : null
                       }
                     }"
+                    class="flex flex-col-reverse md:flex-row-reverse lg:flex-row gap-4"
                 >
+                    <div class="flex">
+                        <template x-for="image in images">
+                            <a
+                                @click.prevent="activeImage = image"
+                                class="cursor-pointer w-[80px] h-[80px] border flex items-center justify-center product-thumbnail"
+                                :class="{'product-thumbnail-active': activeImage === image}"
+                            >
+                                <img :src="image" alt="" class="w-auto max-auto max-h-full"/>
+                            </a>
+                        </template>
+                    </div>
                     <div class="relative">
                         <template x-for="image in images">
                             <div
@@ -78,57 +90,66 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="flex">
-                        <template x-for="image in images">
-                            <a
-                                @click.prevent="activeImage = image"
-                                class="cursor-pointer w-[80px] h-[80px] border border-gray-300 hover:border-purple-500 flex items-center justify-center"
-                                :class="{'border-purple-600': activeImage === image}"
-                            >
-                                <img :src="image" alt="" class="w-auto max-auto max-h-full"/>
-                            </a>
-                        </template>
-                    </div>
                 </div>
             </div>
-            <div class="lg:col-span-2">
-                <h1 class="text-lg font-semibold">
+            <div class="lg:col-span-3 product-view">
+                <h1 class="text-3xl font-semibold">
                     {{$product->title}}
                 </h1>
-                <div class="text-xl font-bold mb-6">${{$product->price}}</div>
-                <div class="flex items-center justify-between mb-5">
-                    <label for="quantity" class="block font-bold mr-4">
-                        Quantity
-                    </label>
-                    <input
-                        type="number"
-                        name="quantity"
-                        x-ref="quantityEl"
-                        value="1"
-                        min="1"
-                        class="w-32 focus:border-purple-500 focus:outline-none rounded"
-                    />
-                </div>
-                <button
-                    @click="addToCart($refs.quantityEl.value)"
-                    class="btn-primary py-4 text-lg flex justify-center min-w-0 mb-6"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6 mr-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                <!-- <label for="quantity" class="block font-bold mr-4">
+                    Quantity
+                </label> -->
+                <div class="flex flex-col justify-between gap-y-4 my-8">
+                    <div x-data="{value: 1}" class="font-number md:my-6 text-2xl lg:text-3xl">${{$product->price}}</div>
+                    <div class="flex items-center content-center quantity">
+                        <button id="down" class="btn btn-default" onclick=" down('0')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                        <input
+                            type="number"
+                            name="quantity"
+                            x-ref="quantityEl"
+                            value="1"
+                            min="1"
+                            class="w-32 qty"
+                            id="myNumber"
                         />
-                    </svg>
-                    Add to Cart
-                </button>
+                        <button id="up" class="btn btn-default" onclick="up('10')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="current" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Add to cart button -->
+                    <div class="add-to-cart-container">
+                        <button
+                            @click="addToCart($refs.quantityEl.value)"
+                            class="add-to-cart-button flex items-center btn-primary"
+                        >
+                        <span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                id="icon-chat"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="add-to-cart-text">Add to cart</span>
+                        </button>
+                    </div>
+                    <!-- Add to cart button -->
+                </div>
                 <div class="mb-6" x-data="{expanded: false}">
                     <div
                         x-show="expanded"
@@ -150,3 +171,48 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function up(max) {
+    document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) + 1;
+    if (document.getElementById("myNumber").value >= parseInt(max)) {
+        document.getElementById("myNumber").value = max;
+    }
+    }
+    function down(min) {
+        document.getElementById("myNumber").value = parseInt(document.getElementById("myNumber").value) - 1;
+        if (document.getElementById("myNumber").value <= parseInt(min)) {
+            document.getElementById("myNumber").value = min;
+        }
+    }
+</script>
+<style>
+    .quantity {
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        align-items: stretch;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    .quantity .qty {
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
+        background-color:transparent;
+        border: 0;
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .quantity button{
+        color:white;
+        height:auto;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>

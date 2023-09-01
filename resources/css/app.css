@@ -30,41 +30,7 @@
 }
 
 @layer components {
-  .btn-primary {
-    
-  }
-  /* .card-listing{
-    display: flex;
-    flex-direction: column;
-    height: 150px;
-    justify-content: space-around;
-  }
-  .card-image{
-    border-radius: 0.5rem 0.5rem 0 0;
-  }
-  h3{
-    font-size: 1.5rem;
-  }
-  .price-container{
-    border-top: 1px black solid;
-    padding-top: 0.75rem
-  }
-  .font-number-label{
-    background: white;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding-right: 0.5rem;
-    position: absolute;
-    text-transform: uppercase;
-    top: -0.5rem;
-  }
-  .font-number{
-    font-family: 'Battambang', display;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: right;
-  } */
+  
 }
 
 .wysiwyg-content h3,

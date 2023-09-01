@@ -4,12 +4,21 @@ body{
     background-color: $white;
     font-family: $primary-font;
     font-weight: 300;
+    .logo{
+        font-family: $secondary-font;
+        svg{
+            @apply h-7 w-7 sm:h-10 sm:w-10 ml-6
+        }
+        a{
+            @apply pb-4
+        }
+    }
     h3{
         color: $black;
-        font-size: 1.5rem;
         font-weight: 500;
+        @apply text-base sm:text-lg md:text-xl lg:text-2xl
     }
-    header{
+    header, .mobile-menu{
         background-color: $white;
         color: $black;
         .btn-register{
@@ -22,16 +31,18 @@ body{
             padding: 0.5rem 1rem;
             width: 100%;
         }
+        .cart-widget{
+            color:$white;
+        }
     }
     .btn-primary{
-        @apply py-2 px-4 rounded-full shadow-md w-full hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors; 
+        @apply py-2 px-8 rounded-full shadow-md w-full hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors; 
         background-color: $black;
         color: $white;
         margin: 1.5rem auto;
-
     }
     .btn-secondary{
-        @apply py-2 px-4 rounded-full shadow-md w-full hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors; 
+        @apply py-2 px-8 rounded-full shadow-md w-full hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors; 
         border: $black 1px solid;
         color: $black;
         display: inline-block;
@@ -66,20 +77,72 @@ body{
     }
     .font-number-label{
         margin-bottom: 0;
-        width: 70%;
+        width: 100%;
+        @apply text-xs md:text-sm;
     }
     .font-number{
         font-family: 'Battambang', display;
-        font-size: 1.5rem;
         font-weight: 400;
-        text-align: right;
     }
+    .card-listing{
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+        justify-content: space-around;
+      }
     .btn-cart-product{
         margin: 0;
         width:auto;
         @apply p-3 md:p-3 top-6 right-6;
         svg{
             @apply h-5 w-5 sm:h-6 sm:w-6;
+        }
+    }
+    /* Product view */
+    .product-thumbnail{
+        border-color: $white;
+    }
+    .product-thumbnail:hover{
+        border-color: $black;
+    }
+    .product-thumbnail-active{
+        border-color: $gray;
+    }
+
+    .product-view{
+        .add-to-cart-container {
+            min-width: 150px;
+            width:fit-content;
+        }
+        .add-to-cart-container .add-to-cart-button {
+            
+            border-radius: 9999px;
+            cursor: pointer;
+            font-family: roboto, sans-serif;
+            height: 60px;
+            margin: 0;
+            padding: 1rem 18px;
+            transition: all 300ms;
+            width: 60px;
+        }
+        .add-to-cart-container .add-to-cart-button .add-to-cart-text{   
+            font-size: 0;
+            margin: 0;
+            opacity: 0;
+            padding: 0 0.5rem;
+            transition: opacity 1000ms;
+            white-space: nowrap;
+            width: 0;
+        }
+        .add-to-cart-container .add-to-cart-button:hover {
+            transition: all 400ms cubic-bezier(.62, .1, .5, 1);
+            width: 100%;
+            .add-to-cart-text{
+                font-size: 20px;
+                opacity: 1;
+                transition: opacity 700ms, width 1ms linear 270ms, font-size 1ms linear 270ms;
+                width: auto;
+            }
         }
     }
 }

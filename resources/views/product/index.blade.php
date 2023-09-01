@@ -9,7 +9,7 @@
         </div>
     <?php else: ?>
         <div
-            class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 m-4 md:m-8 lg:mx-12"
+            class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:m-8 lg:mx-12"
         >
             @foreach($products as $product)
                 <!-- Product Item -->
@@ -21,7 +21,7 @@
                         'price' => $product->price,
                         'addToCartUrl' => route('cart.add', $product)
                     ]) }})"
-                    class="border-transparent relative rounded-lg bg-white">
+                    class="border-transparent relative rounded-lg bg-white flex">
                     <a href="{{ route('product.view', $product->slug) }}"
                        class="aspect-w-3 aspect-h-2 block overflow-hidden">
                         <img
@@ -36,8 +36,8 @@
                                 </h3>
                             </div>
                             <div class="price-container relative flex justify-between my-4">
-                                <span class="title font-number-label">Price</span>
-                                <h5 class="font-number">${{$product->price}}</h5>
+                                <span class="title font-number-label text-right">Price</span>
+                                <h5 class="font-number pl-4 text-lg md:text-xl lg:text-2xl">${{$product->price}}</h5>
                             </div>
                         </div>
                         <button class="btn-primary absolute btn-cart-product" @click="addToCart()">

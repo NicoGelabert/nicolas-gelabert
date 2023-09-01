@@ -6,23 +6,23 @@
     @cart-change.window="cartItemsCount = $event.detail.count"
     class="flex justify-between shadow-md"
 >
-    <div class="grid grid-flow-col items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-5">
+    <div class="grid grid-flow-col items-center logo">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
         <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
         </svg>
-        <a href="{{ route('home') }}" class="block py-navbar-item pl-5"> caMWorld </a>
+        <a href="{{ route('home') }}" class="block py-navbar-item pl-2"> caMWorld </a>
     </div>
     <!-- Responsive Menu -->
     <div
-        class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all bg-slate-900 md:hidden"
+        class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all mobile-menu md:hidden p-4"
         :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'"
     >
         <ul>
             <li>
                 <a
                     href="{{ route('cart.index') }}"
-                    class="relative flex items-center justify-between py-2 px-3 transition-colors hover:bg-slate-800"
+                    class="relative flex items-center justify-between py-2 px-3 transition-colors underline-hover"
                 >
                     <div class="flex items-center">
                         <svg
@@ -47,7 +47,7 @@
                         x-transition
                         x-text="cartItemsCount"
                         x-cloak
-                        class="py-[2px] px-[8px] rounded-full bg-red-500"
+                        class="py-[2px] px-[8px] rounded-full bg-red-500 cart-widget"
                     ></small>
                     <!--/ Cart Items Counter -->
                 </a>
@@ -56,7 +56,7 @@
                 <li x-data="{open: false}" class="relative">
                     <a
                         @click="open = !open"
-                        class="cursor-pointer flex justify-between items-center py-2 px-3 hover:bg-slate-800"
+                        class="cursor-pointer flex justify-between items-center py-2 px-3 underline-hover"
                     >
               <span class="flex items-center">
                 <svg
@@ -91,10 +91,10 @@
                     <ul
                         x-show="open"
                         x-transition
-                        class="z-10 right-0 bg-slate-800 py-2"
+                        class="z-10 right-0 py-2"
                     >
                         <li>
-                            <a href="{{ route('profile') }}" class="flex px-3 py-2 hover:bg-slate-900">
+                            <a href="{{ route('profile') }}" class="flex px-3 py-2 underline-hover">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-5 w-5 mr-2"
@@ -112,10 +112,10 @@
                                 My Profile
                             </a>
                         </li>
-                        <li class="hover:bg-slate-900">
+                        <li class="underline-hover">
                             <a
                                 href="{{ route('order.index') }}"
-                                class="flex items-center px-3 py-2 hover:bg-slate-900"
+                                class="flex items-center px-3 py-2 underline-hover"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -134,13 +134,13 @@
                                 My Orders
                             </a>
                         </li>
-                        <li class="hover:bg-slate-900">
+                        <li class="underline-hover">
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
                                 <a href="{{ route('logout') }}"
-                                   class="flex items-center px-3 py-2 hover:bg-slate-900"
+                                   class="flex items-center px-3 py-2 underline-hover"
                                    onclick="event.preventDefault();
                                         this.closest('form').submit();">
                                     <svg
@@ -167,7 +167,7 @@
                 <li>
                     <a
                         href="{{ route('login') }}"
-                        class="flex items-center py-2 px-3 transition-colors hover:bg-slate-800"
+                        class="flex items-center py-2 px-3 transition-colors underline-hover"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +189,7 @@
                 <li class="px-3 py-3">
                     <a
                         href="{{ route('register') }}"
-                        class="block text-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors w-full"
+                        class="block text-center py-2 px-3 rounded shadow-md transition-colors w-full btn-register"
                     >
                         Register now
                     </a>
@@ -225,7 +225,7 @@
                         x-transition
                         x-cloak
                         x-text="cartItemsCount"
-                        class="absolute z-[100] top-4 -right-3 py-[2px] px-[8px] rounded-full bg-red-500"
+                        class="absolute z-[100] top-4 -right-1 py-[2px] px-[8px] rounded-full bg-red-500 cart-widget mix-blend-multiply"
                     ></small>
                 </a>
             </li>
