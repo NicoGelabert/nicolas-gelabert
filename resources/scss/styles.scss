@@ -33,10 +33,14 @@ body{
         }
         .cart-widget{
             color:$white;
+            @apply mx-2 md:mx-0;
         }
         .flag-icon{
             margin-right: 0.5rem;
             width: 1rem;
+        }
+        ul li{
+            @apply w-fit;
         }
     }
     .btn-primary{

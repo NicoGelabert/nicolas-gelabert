@@ -195,12 +195,47 @@
                     </a>
                 </li>
             @endif
+            <li x-data="{open: false}" class="relative">
+                <a
+                    @click="open = !open"
+                    class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover"
+                >
+                <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span><span class="small-text">{{ Config::get('languages')[App::getLocale()]['display'] }}</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 ml-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        />
+                    </svg>
+                </a>
+                <ul
+                    @click.outside="open = false"
+                    x-show="open"
+                    x-transition
+                    x-cloak
+                    class="absolute z-10 right-0 w-48 dropdown"
+                >
+                    @foreach (Config::get('languages') as $lang => $language)
+                        @if ($lang != App::getLocale())
+                            <li>
+                                <a class="flex items-center underline-hover py-lang-navbar-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span><span class="small-text">{{$language['display']}}</span></a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </li>
         </ul>
     </div>
     <!--/ Responsive Menu -->
     <nav class="hidden md:block">
         <ul class="grid grid-flow-col items-center">
-        <li x-data="{open: false}" class="relative">
+            <li x-data="{open: false}" class="relative">
                     <a
                         @click="open = !open"
                         class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover"

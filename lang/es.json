@@ -3,5 +3,10 @@
     "You're logged in!" : "Estás logueado",
     "Cart" : "Carrito",
     "Login" : "Logueate",
-    "Register now" : "Regístrate ahora"
+    "Register now" : "Regístrate ahora",
+
+    "Your Cart Items" : "Tus artículos del carrito",
+    "Shipping and taxes calculated at checkout." : "Envío e impuestos se calculan al momento de pagar",
+    "Remove" : "Quitar",
+    "Proceed to Checkout" : "Continuar con la compra"
 }

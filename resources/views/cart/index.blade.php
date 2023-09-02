@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
-        <h1 class="text-3xl font-bold mb-6">Your Cart Items</h1>
+        <h1 class="text-3xl font-bold mb-6">{{__('Your Cart Items')}}</h1>
 
         <div x-data="{
             cartItems: {{
@@ -56,7 +56,7 @@
                                             href="#"
                                             @click.prevent="removeItemFromCart()"
                                             class="text-purple-600 hover:text-purple-500"
-                                        >Remove</a
+                                        >{{__('Remove')}}</a
                                         >
                                     </div>
                                 </div>
@@ -73,13 +73,13 @@
                             <span id="cartTotal" class="text-xl" x-text="`$${cartTotal}`"></span>
                         </div>
                         <p class="text-gray-500 mb-6">
-                            Shipping and taxes calculated at checkout.
+                            {{__('Shipping and taxes calculated at checkout.')}}
                         </p>
 
                         <form action="{{route('cart.checkout')}}" method="post">
                             @csrf
                             <button type="submit" class="btn-primary w-full py-3 text-lg">
-                                Proceed to Checkout
+                                {{__('Proceed to Checkout')}}
                             </button>
                         </form>
                     </div>
