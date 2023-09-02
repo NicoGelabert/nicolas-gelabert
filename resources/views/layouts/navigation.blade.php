@@ -39,7 +39,7 @@
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                             />
                         </svg>
-                        Cart
+                        {{ __('Cart') }}
                     </div>
                     <!-- Cart Items Counter -->
                     <small
@@ -183,7 +183,7 @@
                                 d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                             />
                         </svg>
-                        Login
+                        {{ __('Login') }}
                     </a>
                 </li>
                 <li class="px-3 py-3">
@@ -191,7 +191,7 @@
                         href="{{ route('register') }}"
                         class="block text-center py-2 px-3 rounded shadow-md transition-colors w-full btn-register"
                     >
-                        Register now
+                        {{ __('Register now') }}
                     </a>
                 </li>
             @endif
@@ -200,6 +200,41 @@
     <!--/ Responsive Menu -->
     <nav class="hidden md:block">
         <ul class="grid grid-flow-col items-center">
+        <li x-data="{open: false}" class="relative">
+                    <a
+                        @click="open = !open"
+                        class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover"
+                    >
+                    <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span><span class="small-text">{{ Config::get('languages')[App::getLocale()]['display'] }}</span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 ml-2"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </a>
+                    <ul
+                        @click.outside="open = false"
+                        x-show="open"
+                        x-transition
+                        x-cloak
+                        class="absolute z-10 right-0 w-48 dropdown"
+                    >
+                        @foreach (Config::get('languages') as $lang => $language)
+                            @if ($lang != App::getLocale())
+                                <li>
+                                    <a class="flex items-center underline-hover py-lang-navbar-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span><span class="small-text">{{$language['display']}}</span></a>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </li>
             <li>
                 <a
                     href="{{ route('cart.index') }}"
@@ -219,7 +254,7 @@
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                         />
                     </svg>
-                    Cart
+                    {{ __('Cart') }}
                     <small
                         x-show="cartItemsCount"
                         x-transition
@@ -364,7 +399,7 @@
                                 d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                             />
                         </svg>
-                        Login
+                        {{ __('Login') }}
                     </a>
                 </li>
                 <li>
@@ -372,7 +407,7 @@
                         href="{{ route('register') }}"
                         class="btn-register py-2 px-3 shadow transition-colors mx-5"
                     >
-                        Register now
+                        {{ __('Register now') }}
                     </a>
                 </li>
             @endif

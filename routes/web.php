@@ -32,9 +32,13 @@ use Inertia\Inertia;
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware(['guestOrVerified'])->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('home');
+    Route::get('/', function(){
+        return view('welcome');
+    })->name('home');
+    Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+    
+    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
     Route::prefix('/cart')->name('cart.')->group(function () {

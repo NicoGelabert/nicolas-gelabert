@@ -1,3 +1,5 @@
+/* Flag Icon CSS */
+@import url('/node_modules/flag-icon-css/sass/flag-icons.scss');
 @import url('../scss/styles.scss');
 @tailwind base;
 @tailwind components;
@@ -26,6 +28,9 @@
 
   .pr-navbar-item {
     @apply pr-3
+  }
+  .py-lang-navbar-item {
+    @apply py-3
   }
 }
 
