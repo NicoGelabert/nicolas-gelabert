@@ -5,12 +5,8 @@ body{
     font-family: $primary-font;
     font-weight: 300;
     .logo{
-        font-family: $secondary-font;
         svg{
             @apply h-7 w-7 sm:h-10 sm:w-10 ml-6
-        }
-        a{
-            @apply pb-4
         }
     }
     h3{
@@ -44,10 +40,9 @@ body{
         }
     }
     .btn-primary{
-        @apply py-2 px-8 rounded-full shadow-md w-full hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors; 
+        @apply py-2 px-8 rounded-full shadow-md hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors; 
         background-color: $black;
         color: $white;
-        margin: 1.5rem auto;
     }
     .btn-secondary{
         @apply py-2 px-8 rounded-full shadow-md w-full hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors; 
@@ -67,6 +62,7 @@ body{
         font-size: 0.75rem;
         font-weight: 500;
         line-height: 0;
+        margin: 3px 0;
     }
     .title{
         align-items: center;
@@ -151,6 +147,37 @@ body{
                 transition: opacity 700ms, width 1ms linear 270ms, font-size 1ms linear 270ms;
                 width: auto;
             }
+        }
+    }
+    // FOOTER
+    footer{
+        @apply w-full;
+        background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+        border-color: $black;
+        color: $white;
+        .footer-container{
+            @apply flex flex-row mx-auto py-24 justify-around flex-wrap gap-4;
+            .logo {
+                @apply h-fit;
+                a{
+                    @apply flex items-center;
+                }
+                svg{
+                    fill: $white;
+                    margin-left: 0;
+                }
+            }
+            .footer-menu > div {
+                h1{
+                    @apply pb-2 text-2xl;
+                }
+                ul li{
+                    @apply py-1 pl-2 text-xl;
+                }
+            }
+        }
+        .post-footer{
+            @apply flex w-[75%] mx-auto py-4;
         }
     }
 }

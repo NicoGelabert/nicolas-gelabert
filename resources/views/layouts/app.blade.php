@@ -21,6 +21,7 @@
         {{ $slot }}
     </main>
 
+    @include('layouts.footer')
     <!-- Toast -->
     <div
         x-data="toast"

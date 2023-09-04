@@ -4,15 +4,14 @@
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
     }"
     @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between shadow-md"
+    class="flex justify-between shadow-md z-50 relative w-full"
 >
-    <div class="grid grid-flow-col items-center logo">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-        </svg>
-        <a href="{{ route('home') }}" class="block py-navbar-item pl-2"> caMWorld </a>
+    <div class="logo flex items-center">
+        <a href="{{ route('home') }}" class="flex items-center gap-2 pl-2">
+            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+        caMWorld </a>
     </div>
+
     <!-- Responsive Menu -->
     <div
         class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all mobile-menu md:hidden p-4"
@@ -215,43 +214,9 @@
                     </a>
                 </li>
             @endif
-            <li x-data="{open: false}" class="relative">
-                <a
-                    @click="open = !open"
-                    class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover"
-                >
-                <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span><span class="small-text">{{ Config::get('languages')[App::getLocale()]['display'] }}</span>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 ml-2"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                        />
-                    </svg>
-                </a>
-                <ul
-                    @click.outside="open = false"
-                    x-show="open"
-                    x-transition
-                    x-cloak
-                    class="absolute z-10 right-0 w-48 dropdown"
-                >
-                    @foreach (Config::get('languages') as $lang => $language)
-                        @if ($lang != App::getLocale())
-                            <li>
-                                <a class="flex items-center underline-hover py-lang-navbar-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span><span class="small-text">{{$language['display']}}</span></a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
-            </li>
         </ul>
     </div>
+    
     <!--/ Responsive Menu -->
     <nav class="hidden md:block">
         <ul class="grid grid-flow-col items-center">
@@ -486,23 +451,49 @@
             @endif
         </ul>
     </nav>
-    <button
-        @click="mobileMenuOpen = !mobileMenuOpen"
-        class="p-4 block md:hidden"
-    >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1"
+    <div class="flex md:hidden">
+        <div x-data="{open: false}" class="relative">
+            <a
+                @click="open = !open"
+                class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover h-full"
+            >
+                <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span>
+                <span class="small-text">{{ Config::get('languages')[App::getLocale()]['display'] }}</span>
+            </a>
+            <ul
+                @click.outside="open = false"
+                x-show="open"
+                x-transition
+                x-cloak
+                class="absolute z-10 right-0 w-48 dropdown"
+            >
+                @foreach (Config::get('languages') as $lang => $language)
+                    @if ($lang != App::getLocale())
+                        <li>
+                            <a class="flex items-center underline-hover py-lang-navbar-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span><span class="small-text">{{$language['display']}}</span></a>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
+        <button
+            @click="mobileMenuOpen = !mobileMenuOpen"
+            class="p-4 block md:hidden"
         >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-            />
-        </svg>
-    </button>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                />
+            </svg>
+        </button>
+</div>
 </header>
