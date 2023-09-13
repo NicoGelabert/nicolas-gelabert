@@ -2,8 +2,12 @@
     "Welcome": "Bienvenidos",
     "You're logged in!" : "Estás logueado",
     "Cart" : "Carrito",
-    "Login" : "Logueate",
+    "Login" : "Ingresar",
+    "Log Out": "Cerrar sesión",
     "Register now" : "Regístrate ahora",
+    "My account" : "Mi cuenta",
+    "My profile": "Mi perfil",
+    "My orders": "Mis órdenes",
 
     "Products": "Productos",
 

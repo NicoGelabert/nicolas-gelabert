@@ -156,15 +156,22 @@ body{
         border-color: $black;
         color: $white;
         .footer-container{
-            @apply flex flex-row mx-auto py-24 justify-around flex-wrap gap-4;
+            @apply flex flex-row py-24 justify-around flex-wrap gap-4 mx-12;
             .logo {
-                @apply h-fit;
+                @apply mx-8;
                 a{
                     @apply flex items-center;
                 }
                 svg{
                     fill: $white;
                     margin-left: 0;
+                }
+            }
+            .social-icons a{
+                line-height: 0;
+                @apply my-8;
+                i:before{
+                    font-size: x-large;
                 }
             }
             .footer-menu > div {

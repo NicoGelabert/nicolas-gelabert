@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@alpinejs/collapse": "^3.12.3",
+        "@flaticon/flaticon-uicons": "^2.4.0",
         "alpinejs": "^3.12.3",
         "flag-icon-css": "^4.1.7",
         "http.js": "^1.0.0"
