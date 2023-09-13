@@ -44,14 +44,14 @@
                 }" action="{{ route('profile.update') }}" method="post">
                     @csrf
                     <div class="title mb-4">
-                        <h3>Profile Details</h3>
+                        <h3>{{ __('Profile Details') }}</h3>
                     </div>
                     <div class="mb-3">
                         <x-input
                             type="text"
                             name="first_name"
                             value="{{old('first_name', $customer->first_name)}}"
-                            placeholder="First Name"
+                            placeholder="{{ __('First Name') }}"
                             class="w-full account"
                         />
                     </div>
@@ -60,7 +60,7 @@
                             type="text"
                             name="last_name"
                             value="{{old('last_name', $customer->last_name)}}"
-                            placeholder="Last Name"
+                            placeholder="{{ __('Last Name') }}"
                             class="w-full account"
                         />
                     </div>
@@ -69,7 +69,7 @@
                             type="text"
                             name="email"
                             value="{{old('email', $user->email)}}"
-                            placeholder="Your Email"
+                            placeholder="{{ __('Your email') }}"
                             class="w-full account"
                         />
                     </div>
@@ -78,20 +78,20 @@
                             type="text"
                             name="phone"
                             value="{{old('phone', $customer->phone)}}"
-                            placeholder="Your Phone"
+                            placeholder="{{ __('Your phone') }}"
                             class="w-full account"
                         />
                     </div>
 
                     <div class="title mb-8 mb-4">
-                        <h3>Billing Address</h3>
+                        <h3>{{ __('Billing Address') }}</h3>
                     </div>
                     <div class="mb-3">
                         <x-input
                             type="text"
                             name="billing[address1]"
                             x-model="billingAddress.address1"
-                            placeholder="Address 1"
+                            placeholder="{{ __('Address 1') }}"
                             class="w-full account"
                         />
                     </div>
@@ -101,7 +101,7 @@
                                 type="text"
                                 name="billing[address2]"
                                 x-model="billingAddress.address2"
-                                placeholder="Address 2"
+                                placeholder="{{ __('Address 2') }}"
                                 class="w-full account"
                             />
                         </div>
@@ -110,7 +110,7 @@
                                 type="text"
                                 name="billing[zipcode]"
                                 x-model="billingAddress.zipcode"
-                                placeholder="ZipCode"
+                                placeholder="{{ __('ZipCode') }}"
                                 class="w-full account"
                             />
                         </div>
@@ -121,7 +121,7 @@
                                 type="text"
                                 name="billing[city]"
                                 x-model="billingAddress.city"
-                                placeholder="City"
+                                placeholder="{{ __('City') }}"
                                 class="w-full account"
                             />
                         </div>
@@ -131,7 +131,7 @@
                                     name="billing[country_code]"
                                     x-model="billingAddress.country_code"
                                     class="w-full account">
-                            <option value="">Select Country</option>
+                            <option value="">{{ __('Select Country') }}</option>
                             <template x-for="country of countries" :key="country.code">
                                 <option :selected="country.code === billingAddress.country_code"
                                         :value="country.code" x-text="country.name"></option>
@@ -144,7 +144,7 @@
                                         name="billing[state]"
                                         x-model="billingAddress.state"
                                         class="w-full account">
-                                <option value="">Select State</option>
+                                <option value="">{{ __('Select State') }}</option>
                                 <template x-for="[code, state] of Object.entries(billingCountryStates)"
                                             :key="code">
                                     <option :selected="code === billingAddress.state"
@@ -157,7 +157,7 @@
                                 type="text"
                                 name="billing[state]"
                                 x-model="billingAddress.state"
-                                placeholder="State"
+                                placeholder="{{ __('State') }}"
                                 class="w-full account"
                             />
                         </template>
@@ -165,13 +165,13 @@
 
                     <div class="flex flex-col justify-between mb-4">
                         <div class="title mb-8 ">
-                            <h3>Shipping Address</h3>
+                            <h3>{{ __('Shipping Address') }}</h3>
                         </div>
                         <label for="sameAsBillingAddress" class="text-gray-700 flex items-center">
                             <input @change="$event.target.checked ? shippingAddress = {...billingAddress} : ''"
                                    id="sameAsBillingAddress" type="checkbox"
                                    class="text-purple-600 focus:ring-purple-600 mr-2"> 
-                                   <span class="small-text">Same as Billing</span>
+                                   <span class="small-text">{{ __('Same as Billing') }}</span>
                         </label>
                     </div>
                     <div class="mb-3">
@@ -179,7 +179,7 @@
                             type="text"
                             name="shipping[address1]"
                             x-model="shippingAddress.address1"
-                            placeholder="Address 1"
+                            placeholder="{{ __('Address 1') }}"
                             class="w-full account"
                         />
                     </div>
@@ -189,7 +189,7 @@
                                 type="text"
                                 name="shipping[address2]"
                                 x-model="shippingAddress.address2"
-                                placeholder="Address 2"
+                                placeholder="{{ __('Address 2') }}"
                                 class="w-full account"
                             />
                         </div>
@@ -198,7 +198,7 @@
                                 name="shipping[zipcode]"
                                 x-model="shippingAddress.zipcode"
                                 type="text"
-                                placeholder="ZipCode"
+                                placeholder="{{ __('ZipCode') }}"
                                 class="w-full account"
                             />
                         </div>
@@ -209,7 +209,7 @@
                                 type="text"
                                 name="shipping[city]"
                                 x-model="shippingAddress.city"
-                                placeholder="City"
+                                placeholder="{{ __('City') }}"
                                 class="w-full account"
                             />
                         </div>
@@ -219,7 +219,7 @@
                                     name="shipping[country_code]"
                                     x-model="shippingAddress.country_code"
                                     class="w-full account">
-                            <option value="">Select Country</option>
+                            <option value="">{{ __('Select Country') }}</option>
                             <template x-for="country of countries" :key="country.code">
                                 <option :selected="country.code === shippingAddress.country_code"
                                         :value="country.code" x-text="country.name"></option>
@@ -232,7 +232,7 @@
                                         name="shipping[state]"
                                         x-model="shippingAddress.state"
                                         class="w-full account">
-                                <option value="">Select State</option>
+                                <option value="">{{ __('Select State') }}</option>
                                 <template x-for="[code, state] of Object.entries(shippingCountryStates)"
                                             :key="code">
                                     <option :selected="code === shippingAddress.state"
@@ -245,13 +245,13 @@
                                 type="text"
                                 name="shipping[state]"
                                 x-model="shippingAddress.state"
-                                placeholder="State"
+                                placeholder="{{ __('State') }}"
                                 class="w-full account"
                             />
                         </template>
                     </div>
                     <div>
-                        <x-button class="btn-primary">Update</x-button>
+                        <x-button class="btn-primary">{{ __('Update') }}</x-button>
                     </div>
                 </form>
             </div>
@@ -259,13 +259,13 @@
                 <form action="{{route('profile_password.update')}}" method="post">
                     @csrf
                     <div class="title mb-4">
-                        <h3>Update Password</h3>
+                        <h3>{{ __('Update Password') }}</h3>
                     </div>
                     <div class="mb-3">
                         <x-input
                             type="password"
                             name="old_password"
-                            placeholder="Your Current Password"
+                            placeholder="{{ __('Your current password') }}"
                             class="w-full account"
                         />
                     </div>
@@ -273,7 +273,7 @@
                         <x-input
                             type="password"
                             name="new_password"
-                            placeholder="New Password"
+                            placeholder="{{ __('New password') }}"
                             class="w-full account"
                         />
                     </div>
@@ -281,11 +281,11 @@
                         <x-input
                             type="password"
                             name="new_password_confirmation"
-                            placeholder="Repeat New Password"
+                            placeholder="{{ __('Repeat new password') }}"
                             class="w-full account"
                         />
                     </div>
-                    <x-button class="btn-primary">Update</x-button>
+                    <x-button class="btn-primary">{{ __('Update') }}</x-button>
                 </form>
             </div>
         </div>

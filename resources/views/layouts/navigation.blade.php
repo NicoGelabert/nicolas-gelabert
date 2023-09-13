@@ -244,7 +244,7 @@
                     x-show="open"
                     x-transition
                     x-cloak
-                    class="absolute z-10 right-0 w-48 dropdown"
+                    class="absolute z-10 right-0 w-48 dropdown px-4"
                 >
                     @foreach (Config::get('languages') as $lang => $language)
                         @if ($lang != App::getLocale())
@@ -323,7 +323,7 @@
                       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                   />
                 </svg>
-                My Account
+                {{ __('My account') }}
               </span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -364,7 +364,7 @@
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                                     />
                                 </svg>
-                                My Profile
+                                {{ __('My profile') }}
                             </a>
                         </li>
                         <li>
@@ -386,7 +386,7 @@
                                         d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                                     />
                                 </svg>
-                                My Orders
+                                {{ __('My orders')}}
                             </a>
                         </li>
                         <li>
@@ -465,7 +465,7 @@
                 x-show="open"
                 x-transition
                 x-cloak
-                class="absolute z-10 right-0 w-48 dropdown"
+                class="absolute z-10 right-0 w-48 dropdown px-4"
             >
                 @foreach (Config::get('languages') as $lang => $language)
                     @if ($lang != App::getLocale())

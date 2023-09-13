@@ -24,7 +24,6 @@ body{
         }
         .dropdown{
             background-color: $white;
-            padding: 0.5rem 1rem;
             width: 100%;
         }
         .cart-widget{
@@ -158,11 +157,12 @@ body{
         .footer-container{
             @apply flex flex-row py-24 justify-around flex-wrap gap-4 mx-12;
             .logo {
-                @apply mx-8;
+                @apply mx-8 sm:mx-0;
                 a{
                     @apply flex items-center;
                 }
                 svg{
+                    @apply h-10 w-auto;
                     fill: $white;
                     margin-left: 0;
                 }

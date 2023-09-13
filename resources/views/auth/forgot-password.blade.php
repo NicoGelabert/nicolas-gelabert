@@ -7,7 +7,7 @@
         @csrf
 
         <div class="title mb-8 ">
-            <h3>Enter your Email</h3>
+            <h3>{{ __('Enter your email') }}</h3>
         </div>
 
         <!-- Session Status -->
@@ -25,22 +25,22 @@
 
         <div class="mb-3">
             <x-input id="email" class="w-full account" type="email" name="email" :value="old('email')" required
-            autofocus placeholder="Enter your Email Address"/>
+            autofocus placeholder="{{ __('Your email address') }}"/>
         </div>
-        <div class="grid grid-cols-3 gap-3 mb-3 items-center">
-            <div class="col-span-2">
+        <div class="grid grid-cols-5 gap-3 mb-3 items-center">
+            <div class="col-span-3">
                 <button
-                    class="btn-primary"
+                    class="btn-primary w-full"
                 >
-                    Email Password Reset Link
+                    {{ __('Reset password') }}
                 </button>
             </div>
-            <div class="inline-block">
+            <div class="col-span-2 w-full">
                 <a
                     href="{{ route('login') }}"
                     class="btn-secondary"
                 >
-                    login
+                    {{ __('Login') }}
                 </a>
             </div>
         </div>

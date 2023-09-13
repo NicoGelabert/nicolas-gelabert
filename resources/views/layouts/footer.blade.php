@@ -3,7 +3,7 @@
         <div>
             <div class="logo">
                 <a href="{{ route('home') }}" class="flex gap-2">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <x-application-logo class="block fill-current text-gray-800" />
                 caMWorld </a>
             </div>
             <div class="flex gap-4 justify-center social-icons">

@@ -7,7 +7,7 @@
         @csrf
 
         <div class="title mb-8 ">
-            <h3>Enter your new password</h3>
+            <h3>{{ __('Enter your new password') }}</h3>
         </div>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -19,14 +19,14 @@
         <div>
             <!-- <x-label for="email" :value="__('Email')" class="small-text mb-3"/> -->
 
-            <x-input id="email" class="w-full account" type="email" name="email" :value="old('email', $request->email)" required autofocus placeholder="Your Email" />
+            <x-input id="email" class="w-full account" type="email" name="email" :value="old('email', $request->email)" required autofocus placeholder="{{ __('Your email') }}" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <!-- <x-label for="password" :value="__('Password')" class="small-text mb-3" /> -->
 
-            <x-input id="password" class="w-full account" type="password" name="password" required placeholder="Your password"  />
+            <x-input id="password" class="w-full account" type="password" name="password" required placeholder="{{ __('Your password') }}"  />
         </div>
 
         <!-- Confirm Password -->
@@ -35,12 +35,12 @@
 
             <x-input id="password_confirmation"  class="w-full account"
             type="password"
-            name="password_confirmation" required placeholder="Confirm Your password" />
+            name="password_confirmation" required placeholder="{{ __('Confirm your password') }}" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
             <x-button>
-                {{ __('Reset Password') }}
+                {{ __('Reset password') }}
             </x-button>
         </div>
     </form>
