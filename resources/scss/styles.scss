@@ -4,6 +4,9 @@ body{
     background-color: $white;
     font-family: $primary-font;
     font-weight: 300;
+    a{
+        @apply hover:text-[#a8eb12];
+    }
     .logo{
         svg{
             @apply h-7 w-7 sm:h-10 sm:w-10 ml-6
@@ -17,6 +20,9 @@ body{
     header, .mobile-menu{
         background-color: $white;
         color: $black;
+        a:hover{
+            color:$black;
+        }
         .btn-register{
             @apply py-2 px-4 rounded-full shadow-md w-full hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors; 
             border: $black 1px solid;
@@ -155,11 +161,11 @@ body{
         border-color: $black;
         color: $white;
         .footer-container{
-            @apply flex flex-row py-24 justify-around flex-wrap gap-4 mx-12;
+            @apply pt-16 pb-8 justify-between flex-wrap gap-4;
             .logo {
                 @apply mx-8 sm:mx-0;
                 a{
-                    @apply flex items-center;
+                    @apply flex items-center justify-center md:justify-start;
                 }
                 svg{
                     @apply h-10 w-auto;
@@ -171,20 +177,21 @@ body{
                 line-height: 0;
                 @apply my-8;
                 i:before{
-                    font-size: x-large;
+                    @apply text-2xl;
                 }
             }
             .footer-menu > div {
-                h1{
-                    @apply pb-2 text-2xl;
+                @apply flex-1 md:flex-auto;
+                h4{
+                    @apply text-lg font-bold;
                 }
                 ul li{
-                    @apply py-1 pl-2 text-xl;
+                    @apply text-sm pb-1 md:pl-2;
                 }
             }
         }
         .post-footer{
-            @apply flex w-[75%] mx-auto py-4;
+            @apply flex flex-col-reverse sm:flex-row items-center justify-between mx-auto py-4 md:py-8 text-xs gap-y-4;
         }
     }
 }

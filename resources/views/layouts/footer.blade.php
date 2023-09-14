@@ -1,5 +1,5 @@
-<footer class="">
-    <div class="footer-container">
+<footer class="divide-y">
+    <div class="footer-container flex flex-col md:flex-row max-w-[90%] lg:max-w-[80%] mx-auto">
         <div>
             <div class="logo">
                 <a href="{{ route('home') }}" class="flex gap-2">
@@ -24,34 +24,66 @@
                 </a>
             </div>
         </div>
-        <div class="flex flex-wrap gap-2 lg:gap-12 footer-menu justify-between px-8">
+        <div class="flex flex-col text-center sm:flex-row gap-y-8 sm:flex-row sm:justify-between md:text-left md:gap-8 lg:gap-16 footer-menu">
             <div>
-                <h1>Headline</h1>
+                <h4>{{ __('My account') }}</h4>
                 <ul>
-                    <li>button 1</li>
-                    <li>button 2</li>
-                    <li>button 3</li>
+                    <li>
+                        <a href="{{ route('register') }}">
+                            {{ __('Login') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}">
+                            {{ __('Register now') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('password.request') }}">
+                            {{ __('Forgot password?') }}
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div>
-                <h1>Headline</h1>
+                <h4>The company</h4>
                 <ul>
-                    <li>button 1</li>
-                    <li>button 2</li>
-                    <li>button 3</li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Work with us</a></li>
+                    <li><a href="#">Terms & conditions</a></li>
+                    <li><a href="#">Privacy policy</a></li>
                 </ul>
             </div>
             <div>
-                <h1>Headline</h1>
+                <h4>Help</h4>
                 <ul>
-                    <li>button 1</li>
-                    <li>button 2</li>
-                    <li>button 3</li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Faq's</a></li>
+                    <li><a href="#">Contact us</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="post-footer">
-        <span class="small-text">Acá va el copyright</span>
+    <div class="post-footer max-w-[90%] lg:max-w-[80%] ">
+        <span>Designed by <a href="https://nicolasgelabert.com.ar">nicolasgelabert.com.ar</a></span>
+        <ul class="flex gap-x-4">
+            @foreach (Config::get('languages') as $lang => $language)
+                @if ($lang != App::getLocale())
+                    <li>
+                        <a class="flex items-center gap-x-1 opacity-50" href="{{ route('lang.switch', $lang) }}">
+                            <span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span>
+                            <span>{{$language['display']}}</span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a class="flex items-center gap-x-1" href="{{ route('lang.switch', $lang) }}">
+                            <span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span>
+                            <span>{{$language['display']}}</span>
+                        </a>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
     </div>
 </footer>
