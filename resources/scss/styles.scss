@@ -191,7 +191,7 @@ body{
             }
         }
         .post-footer{
-            @apply flex flex-col-reverse sm:flex-row items-center justify-between mx-auto py-4 md:py-8 text-xs gap-y-4;
+            @apply flex flex-col-reverse sm:flex-row items-center justify-between mx-auto pt-4 pb-8 md:py-8 text-xs gap-y-4;
         }
     }
 }

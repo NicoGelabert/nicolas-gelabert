@@ -52,5 +52,15 @@
     "Your Cart Items" : "Tus artículos del carrito",
     "Shipping and taxes calculated at checkout." : "Envío e impuestos se calculan al momento de pagar",
     "Remove" : "Quitar",
-    "Proceed to Checkout" : "Continuar con la compra"
+    "Proceed to Checkout" : "Continuar con la compra",
+
+    "The company" : "La empresa",
+    "About us" : "Sobre nosotros",
+    "Work with us" : "Trabaja con nosotros",
+    "Terms & conditions" : "Términos & condiciones",
+    "Privacy Policy" : "Política de privacidad",
+    "Help" : "Ayuda",
+    "Support" : "Soporte",
+    "Faq" : "Preguntas frecuentes",
+    "Contact us" : "Contáctenos"
 }

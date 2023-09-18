@@ -46,20 +46,20 @@
                 </ul>
             </div>
             <div>
-                <h4>The company</h4>
+                <h4>{{ __('The company') }}</h4>
                 <ul>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Work with us</a></li>
-                    <li><a href="#">Terms & conditions</a></li>
-                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">{{ __('About us') }}</a></li>
+                    <li><a href="#">{{ __('Work with us') }}</a></li>
+                    <li><a href="#">{{ __('Terms & conditions') }}</a></li>
+                    <li><a href="#">{{ __('Privacy policy') }}</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Help</h4>
+                <h4>{{ __('Help') }}</h4>
                 <ul>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Faq's</a></li>
-                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">{{ __('Support') }}</a></li>
+                    <li><a href="#">{{ __('Faq') }}</a></li>
+                    <li><a href="#">{{ __('Contact us') }}</a></li>
                 </ul>
             </div>
         </div>
