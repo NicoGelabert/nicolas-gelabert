@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\welcomeController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
