@@ -24,7 +24,7 @@
         }" class="bg-white p-4 rounded-lg shadow">
             <!-- Product Items -->
             <template x-if="cartItems.length">
-                <div>
+                <div class="flex flex-wrap justify-between">
                     <!-- Product Item -->
                     <template x-for="product of cartItems" :key="product.id">
                         <div x-data="productItem(product)">
@@ -35,7 +35,7 @@
                                     <img :src="product.image" class="object-cover" alt=""/>
                                 </a>
                                 <div class="flex flex-col justify-between flex-1">
-                                    <div class="flex justify-between mb-3">
+                                    <div class="flex flex-col items-center mb-3">
                                         <h3 x-text="product.title"></h3>
                                         <span class="text-lg font-semibold">
                                             $<span x-text="product.price"></span>

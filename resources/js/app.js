@@ -3,6 +3,8 @@ import './bootstrap';
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse'
 import {get, post} from "./http.js";
+import 'flowbite';
+import Splide from '@splidejs/splide';
 
 Alpine.plugin(collapse)
 
@@ -91,3 +93,28 @@ document.addEventListener("alpine:init", async () => {
 
 
 Alpine.start();
+
+new Splide( '.splide', {
+  type   : 'loop',
+  perPage: 5,
+  perMove: 1,
+  gap    : '0.5rem',
+  autoplay: true,
+  pagination: true,
+  omitEnd  : true,
+  autoWidth: false,
+  breakpoints: {
+    800: {
+      perPage: 4,
+      gap    : '.7rem',
+    },
+    640: {
+      perPage: 3,
+      gap    : '.7rem',
+    },
+    480: {
+      perPage: 2,
+      gap    : '.5rem',
+    },
+  },
+}).mount();

@@ -1,9 +1,11 @@
 /* Flag Icon CSS */
 @import url('/node_modules/flag-icon-css/sass/flag-icons.scss');
 @import url('../scss/styles.scss');
+@import url('/node_modules/@splidejs/splide/dist/css/splide.min.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 @layer base {
   .py-navbar-item {

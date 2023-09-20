@@ -2,7 +2,7 @@
     <div class="footer-container flex flex-col md:flex-row max-w-[90%] lg:max-w-[80%] mx-auto">
         <div>
             <div class="logo">
-                <a href="{{ route('home') }}" class="flex gap-2">
+                <a href="{{ route('welcome') }}" class="flex gap-2">
                     <x-application-logo class="block fill-current text-gray-800" />
                 caMWorld </a>
             </div>
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="post-footer max-w-[90%] lg:max-w-[80%] ">
-        <span>Designed by <a href="https://nicolasgelabert.com.ar">nicolasgelabert.com.ar</a></span>
+        <span>{{__('Site design and developed by')}}<a href="{{ route('welcome') }}"> Nicolás Gelabert</a></span>
         <ul class="flex gap-x-4">
             @foreach (Config::get('languages') as $lang => $language)
                 @if ($lang != App::getLocale())

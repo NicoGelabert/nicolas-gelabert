@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\welcomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
@@ -20,28 +21,14 @@ use Inertia\Inertia;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['guestOrVerified'])->group(function () {
-    Route::get('/', function(){
-        return view('welcome');
-    })->name('home');
+    Route::get('/demo',[WelcomeController::class, 'index'])->name('welcome');
     Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
     
-    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
+    Route::get('demo/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('demo/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
-    Route::prefix('/cart')->name('cart.')->group(function () {
+    Route::prefix('demo/cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::post('/add/{product:slug}', [CartController::class, 'add'])->name('add');
         Route::post('/remove/{product:slug}', [CartController::class, 'remove'])->name('remove');
@@ -49,15 +36,15 @@ Route::middleware(['guestOrVerified'])->group(function () {
     });
 });
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
-    Route::post('/profile', [ProfileController::class, 'store'])->name('profile.update');
-    Route::post('/profile/password-update', [ProfileController::class, 'passwordUpdate'])->name('profile_password.update');
-    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('cart.checkout');
-    Route::post('/checkout/{order}', [CheckoutController::class, 'checkoutOrder'])->name('cart.checkout-order');
-    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-    Route::get('/checkout/failure', [CheckoutController::class, 'failure'])->name('checkout.failure');
-    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
-    Route::get('/orders/{order}', [OrderController::class, 'view'])->name('order.view');
+    Route::get('demo/profile', [ProfileController::class, 'view'])->name('profile');
+    Route::post('demo/profile', [ProfileController::class, 'store'])->name('profile.update');
+    Route::post('demo/profile/password-update', [ProfileController::class, 'passwordUpdate'])->name('profile_password.update');
+    Route::post('demo/checkout', [CheckoutController::class, 'checkout'])->name('cart.checkout');
+    Route::post('demo/checkout/{order}', [CheckoutController::class, 'checkoutOrder'])->name('cart.checkout-order');
+    Route::get('demo/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('demo/checkout/failure', [CheckoutController::class, 'failure'])->name('checkout.failure');
+    Route::get('demo/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('demo/orders/{order}', [OrderController::class, 'view'])->name('order.view');
 });
 
 Route::post('/webhook/stripe', [CheckoutController::class, 'webhook']);
