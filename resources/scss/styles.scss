@@ -157,7 +157,7 @@ body{
     #image-carousel{
         ul li{
             .card-listing{
-                @apply h-[120px] justify-between;
+                @apply h-[100px] justify-between;
                 h3{
                     @apply text-sm sm:text-base lg:text-lg;
                 }
