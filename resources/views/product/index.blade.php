@@ -4,12 +4,12 @@
 
 <x-app-layout>
     <?php if ($products->count() === 0): ?>
-        <div class="text-center text-gray-600 py-16 text-xl">
+        <div class="text-center text-gray-600 py-16 text-xl h-screen">
             There are no products published
         </div>
     <?php else: ?>
         <div
-            class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 md:m-8 lg:mx-12"
+            class="grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:mx-12 pt-24 lg:pt-32"
         >
             @foreach($products as $product)
                 <!-- Product Item -->
@@ -21,13 +21,13 @@
                         'price' => $product->price,
                         'addToCartUrl' => route('cart.add', $product)
                     ]) }})"
-                    class="border-transparent relative rounded-lg bg-white flex">
+                    class="border-transparent relative overflow-hidden rounded-lg bg-white flex">
                     <a href="{{ route('product.view', $product->slug) }}"
                        class="aspect-w-3 aspect-h-2 block overflow-hidden">
                         <img
                             src="{{ $product->image }}"
                             alt=""
-                            class="card-image object-cover hover:scale-105 hover:rotate-1 transition-transform p-4"
+                            class="card-image object-cover hover:scale-105 hover:rotate-1 transition-transform"
                         />
                         <div class="p-4 card-listing">
                             <div>
@@ -62,6 +62,8 @@
                 <!--/ Product Item -->
             @endforeach
         </div>
-        {{$products->links()}}
+        <div class="m-8">
+            {{$products->links()}}
+        </div>
     <?php endif; ?>
 </x-app-layout>

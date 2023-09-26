@@ -4,7 +4,7 @@
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
     }"
     @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between shadow-md z-50 relative w-full"
+    class="flex justify-between shadow-md z-50 fixed w-full"
 >
     <div class="logo flex items-center">
         <a href="{{ route('welcome') }}" class="flex items-center gap-2 pl-2">
