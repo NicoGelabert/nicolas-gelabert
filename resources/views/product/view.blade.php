@@ -6,7 +6,7 @@
                     'title' => $product->title,
                     'price' => $product->price,
                     'addToCartUrl' => route('cart.add', $product)
-                ]) }})" class="container lg:p-8 mx-auto">
+                ]) }})" class="container lg:p-8 mx-auto pt-24 lg:pt-32">
         <div class="grid gap-12 grid-cols-1 lg:grid-cols-6">
             <div class="lg:col-span-3">
                 <div

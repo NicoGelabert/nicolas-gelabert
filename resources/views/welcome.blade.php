@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="hidden md:block md:w-2/5 pr-16 scale-in-center">
-                <img src="/storage/images/camera-home.png" alt="" >
+                <img src="{{ asset('storage/images/camera-home.png') }}" alt="" >
             </div>
         </div>
 
