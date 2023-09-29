@@ -2,7 +2,7 @@
     <form
         action="{{ route('login') }}"
         method="POST" 
-        class="max-w-[400px] mx-auto p-6 my-16"
+        class="max-w-[400px] mx-auto p-6 pt-24"
     >
         @csrf
 
