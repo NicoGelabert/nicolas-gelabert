@@ -5,13 +5,14 @@
     "See products" : "Ver productos",
     "Go to cart" : "Ir al carrito",
     "Get vintage. Get real." : "Sé vintage. Sé real.",
+    "Shop Collection" : "Ver todos los productos",
     "Latest products" : "Últimos productos",
     "Welcome" : "Bienvenidos",
     "You're logged in!" : "Estás logueado",
     "Cart" : "Carrito",
     "Login" : "Ingresar",
     "Log Out" : "Cerrar sesión",
-    "Register now" : "Regístrate ahora",
+    "Register now" : "Regístrate",
     "My account" : "Mi cuenta",
     "My profile" : "Mi perfil",
     "My orders" : "Mis órdenes",
@@ -61,6 +62,11 @@
     "Remove" : "Quitar",
     "Proceed to Checkout" : "Continuar con la compra",
 
+    "Subscribe to our newsletter." : "Suscríbete a nuestro newsletter.",
+    "Subscribe" : "Suscríbete",
+    "Weekly articles" : "Artículos semanales",
+    "No spam" : "No enviamos spam",
+
     "The company" : "La empresa",
     "About us" : "Sobre nosotros",
     "Work with us" : "Trabaja con nosotros",
@@ -70,4 +76,5 @@
     "Support" : "Soporte",
     "Faq" : "Preguntas frecuentes",
     "Contact us" : "Contáctenos"
+
 }
