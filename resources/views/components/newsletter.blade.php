@@ -5,7 +5,7 @@
                 <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{{__('Subscribe to our newsletter.')}}</h2>
                 <p class="mt-4 text-lg leading-8 text-gray-400">Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt dolore.</p>
                 <div class="mt-6 flex flex-col sm:flex-row w-full gap-4">
-                    <input id="email-address" name="email" type="email" autocomplete="email" required class="rounded-md border-0 bg-white/5 w-full" placeholder="Enter your email">
+                    <input id="email-address" name="email" type="email" autocomplete="email" required class="account w-full" placeholder="Enter your email">
                     <button type="submit" class="btn-primary">{{__('Subscribe')}}</button>
                 </div>
             </div>

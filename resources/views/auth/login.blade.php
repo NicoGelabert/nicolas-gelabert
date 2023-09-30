@@ -9,16 +9,6 @@
         <div class="title mb-8 ">
             <h3>{{ __('Login to your account')}}</h3>
         </div>
-        <!-- <p class="text-center text-gray-500 mb-6">
-            or
-            <a
-                href="{{ route('register') }}"
-                class="text-sm text-purple-700 hover:text-purple-600"
-            >
-                create new account
-            </a>
-        </p> -->
-
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')"/>
 

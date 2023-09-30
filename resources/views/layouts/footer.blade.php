@@ -1,4 +1,4 @@
-<footer class="divide-y">
+<footer>
     <div class="footer-container flex flex-col md:flex-row max-w-[90%] lg:max-w-[80%] mx-auto">
         <div>
             <div class="logo">
@@ -64,6 +64,7 @@
             </div>
         </div>
     </div>
+    <hr class="h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-white to-transparent opacity-50 dark:opacity-100" />
     <div class="post-footer max-w-[90%] lg:max-w-[80%] ">
         <span>{{__('Site design and developed by')}}<a href="{{ route('welcome') }}"> Nicolás Gelabert</a></span>
         <ul class="flex gap-x-4">

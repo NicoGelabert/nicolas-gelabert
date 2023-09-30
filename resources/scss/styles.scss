@@ -45,16 +45,22 @@ body{
         }
     }
     .btn-primary{
-        @apply py-2 px-8 rounded-full shadow-md hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors; 
+        @apply py-2 px-8 rounded-full shadow-md hover:bg-slate-200 hover:text-slate-900 active:bg-slate-400 transition-colors text-xs sm:text-sm text-center; 
         background-color: $black;
         color: $white;
     }
     .btn-secondary{
-        @apply py-2 px-8 rounded-full shadow-md w-full hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors; 
+        @apply py-2 sm:px-8 rounded-full shadow-md w-full hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors text-xs sm:text-sm; 
         border: $black 1px solid;
         color: $black;
         display: inline-block;
         margin: 1.5rem auto;
+        text-align: center;
+    }
+    .anchor-btn{
+        @apply py-2 sm:px-8 hover:bg-slate-200 hover:border-transparent hover:text-slate-900 active:bg-slate-400 transition-colors text-xs sm:text-sm;
+        color: $black;
+        display: inline-block;
         text-align: center;
     }
     .account{
@@ -184,11 +190,6 @@ body{
         }
     }
     // SPLIDE Home carousel
-    // NEWSLETTER START
-    // .subscribe{
-    //     color
-    // }
-    // NEWSLETTER END
     // FOOTER
     footer{
         @apply w-full bg-gray-900;
@@ -225,7 +226,7 @@ body{
             }
         }
         .post-footer{
-            @apply flex flex-col-reverse sm:flex-row items-center justify-between mx-auto pt-4 pb-8 md:py-8 text-xs gap-y-4;
+            @apply flex flex-col-reverse sm:flex-row items-center justify-between mx-auto pt-8 pb-8 md:py-8 text-xs gap-y-4;
         }
     }
 }

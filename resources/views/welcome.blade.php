@@ -3,7 +3,7 @@
     ?>
     <x-app-layout>
         <div class="flex flex-col md:flex-row items-center relative md:h-screen">
-            <div class="w-full md:w-3/5 relative isolate px-6 pt-24 pb-3 lg:px-8 slide-in-left">
+            <div class="w-full md:w-3/5 relative isolate px-6 pt-24 pb-3 md:pt-0 md:pb-0 lg:px-8 slide-in-left">
                 <div class="flex mb-4 justify-start">
                     <div class="relative rounded-full sm:px-3 py-1 text-xs lg:text-sm leading-6 text-gray-600 sm:ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                     {{__('Site design and developed by')}} Nicolás Gelabert 
@@ -15,9 +15,17 @@
                 <div class="text-left">
                     <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">E-Commerce demo</h1>
                     <p class="mt-2 text-lg leading-8 text-gray-600">{{__('E-commerce site developed with Laravel, Vue JS and Tailwind.')}}</p>
-                    <div class="mt-4 flex items-center justify-around md:justify-start gap-x-6">
-                        <a href="{{ route('login') }}" class="btn-primary text-sm md:text-base">{{__('Login')}}</a>
-                        <a href="{{ route('register') }}" class="text-sm md:text-base font-semibold leading-6 text-gray-900">{{__('Register now')}}<span aria-hidden="true">→</span></a>
+                    <div class="flex gap-3 my-6 md:justify-start">
+                        <div class="">
+                            <button
+                                class="btn-primary w-full"
+                            >
+                            {{ __('Login')}}
+                            </button>
+                        </div>
+                        <div class="">
+                            <a href="{{ route('register') }}" class="anchor-btn">{{__('Register now')}}<span aria-hidden="true">→</span></a>
+                        </div>
                     </div>
                 </div>
             </div>

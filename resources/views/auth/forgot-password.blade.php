@@ -13,16 +13,6 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')"/>
 
-        <!-- <p class="text-center text-gray-500 mb-6">
-            or
-            <a
-                href="{{ route('login') }}"
-                class="text-purple-600 hover:text-purple-500"
-            >
-                login with existing account
-            </a>
-        </p> -->
-
         <div class="mb-3">
             <x-input id="email" class="w-full account" type="email" name="email" :value="old('email')" required
             autofocus placeholder="{{ __('Your email address') }}"/>
