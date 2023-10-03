@@ -6,9 +6,9 @@
                     'title' => $product->title,
                     'price' => $product->price,
                     'addToCartUrl' => route('cart.add', $product)
-                ]) }})" class="container lg:p-8 mx-auto pt-24 lg:pt-32">
-        <div class="grid gap-12 grid-cols-1 lg:grid-cols-6">
-            <div class="lg:col-span-3">
+                ]) }})" class=" lg:p-8 mx-auto pt-24 lg:pt-32">
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="w-full md:w-1/2">
                 <div
                     x-data="{
                       images: ['{{$product->image}}'],
@@ -29,7 +29,7 @@
                           this.activeImage = this.images.length > 0 ? this.images[0] : null
                       }
                     }"
-                    class="flex flex-col-reverse md:flex-row-reverse lg:flex-row gap-4"
+                    class="max-w-fit flex flex-col-reverse lg:flex-row gap-4 md:sticky top-24" id="imagen"
                 >
                     <div class="flex">
                         <template x-for="image in images">
@@ -38,7 +38,7 @@
                                 class="cursor-pointer w-[80px] h-[80px] border flex items-center justify-center product-thumbnail"
                                 :class="{'product-thumbnail-active': activeImage === image}"
                             >
-                                <img :src="image" alt="" class="w-auto max-auto max-h-full"/>
+                                <img :src="image" alt="" class=""/>
                             </a>
                         </template>
                     </div>
@@ -92,14 +92,14 @@
                     </div>
                 </div>
             </div>
-            <div class="lg:col-span-3 product-view">
+            <div class="w-full md:w-1/2 product-view" id="texto">
                 <h1 class="text-3xl font-semibold">
                     {{$product->title}}
                 </h1>
                 <!-- <label for="quantity" class="block font-bold mr-4">
                     Quantity
                 </label> -->
-                <div class="flex flex-col justify-between gap-y-4 my-8">
+                <div class="flex flex-wrap justify-between align-center gap-y-4 my-8">
                     <div x-data="{value: 1}" class="font-number md:my-6 text-2xl lg:text-3xl">${{$product->price}}</div>
                     <div class="flex items-center content-center quantity">
                         <button id="down" class="btn btn-default" onclick=" down('0')">
@@ -123,7 +123,7 @@
                         </button>
                     </div>
                     <!-- Add to cart button -->
-                    <div class="add-to-cart-container">
+                    <div class="add-to-cart-container flex-[1_0_100%]">
                         <button
                             @click="addToCart($refs.quantityEl.value)"
                             class="add-to-cart-button flex items-center btn-primary"
@@ -185,6 +185,7 @@
             document.getElementById("myNumber").value = min;
         }
     }
+
 </script>
 <style>
     .quantity {

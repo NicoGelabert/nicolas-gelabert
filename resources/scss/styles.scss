@@ -155,7 +155,7 @@ body{
                 font-size: 20px;
                 opacity: 1;
                 transition: opacity 700ms, width 1ms linear 270ms, font-size 1ms linear 270ms;
-                width: auto;
+                width: calc(100% - 50px);
             }
         }
     }
