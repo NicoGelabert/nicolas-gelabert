@@ -14,29 +14,29 @@
     <div class="hidden md:w-1/2 lg:w-2/5 md:flex items-center gap-3 md:gap-6">
         <div class="w-1/3 gap-y-4 flex flex-col">
             <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/1983036/pexels-photo-1983036.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-full w-full object-cover object-center">
+                <img src="{{ asset('storage/images/camaras-001.webp') }}" alt="" class="h-full w-full object-cover object-center">
             </div>
             <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/8086616/pexels-photo-8086616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-full w-full object-cover object-center">
-            </div>
-        </div>
-        <div class=" w-1/3 gap-y-4 flex flex-col">
-            <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/3144800/pexels-photo-3144800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-full w-full object-cover object-center">
-            </div>
-            <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/3907509/pexels-photo-3907509.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" class="h-full w-full object-cover object-center">
-            </div>
-            <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/3781267/pexels-photo-3781267.jpeg" alt="" class="h-full w-full object-cover object-center">
+                <img src="{{ asset('storage/images/camaras-002.webp') }}" alt="" class="h-full w-full object-cover object-center">
             </div>
         </div>
         <div class=" w-1/3 gap-y-4 flex flex-col">
             <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/2910207/pexels-photo-2910207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-full w-full object-cover object-center">
+                <img src="{{ asset('storage/images/camaras-003.webp') }}" alt="" class="h-full w-full object-cover object-center">
             </div>
             <div class="overflow-hidden rounded-lg">
-                <img src="https://images.pexels.com/photos/3117811/pexels-photo-3117811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-full w-full object-cover object-center">
+                <img src="{{ asset('storage/images/camaras-004.webp') }}" alt="" class="h-full w-full object-cover object-center">
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <img src="{{ asset('storage/images/camaras-005.webp') }}" alt="" class="h-full w-full object-cover object-center">
+            </div>
+        </div>
+        <div class=" w-1/3 gap-y-4 flex flex-col">
+            <div class="overflow-hidden rounded-lg">
+                <img src="{{ asset('storage/images/camaras-006.webp') }}" alt="" class="h-full w-full object-cover object-center">
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <img src="{{ asset('storage/images/camaras-007.webp') }}" alt="" class="h-full w-full object-cover object-center">
             </div>
         </div>
     </div>
