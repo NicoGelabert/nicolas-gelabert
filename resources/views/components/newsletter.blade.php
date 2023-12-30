@@ -5,8 +5,14 @@
                 <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{{__('Subscribe to our newsletter.')}}</h2>
                 <p class="mt-4 text-lg leading-8 text-gray-400">Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt dolore.</p>
                 <div class="mt-6 flex flex-col sm:flex-row w-full gap-4">
-                    <input id="email-address" name="email" type="email" autocomplete="email" required class="account w-full" placeholder="Enter your email">
-                    <button type="submit" class="btn-primary">{{__('Subscribe')}}</button>
+                    <form id="subscriptionForm" action="{{ route('subscribe.store') }}" method="post" class="flex gap-2 w-full">
+                        @csrf
+                        <input id="emailInput" type="email" name="email" placeholder="Enter your email" required class="account w-full">
+                        <button id="subscribeBtn" type="submit" class="btn-primary">{{__('Subscribe')}}</button>
+                    </form>
+                    <div id="successMessage" style="display: none;">
+                        {{__('Subscription successful!')}}
+                    </div>
                 </div>
             </div>
             <div class="w-full md:w-1/2 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
@@ -36,3 +42,26 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('subscriptionForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            // Fetch API or Axios can be used for AJAX request
+            fetch('{{ route("subscribe.store") }}', {
+                method: 'POST',
+                body: new FormData(form),
+            })
+            .then(response => response.json())
+            .then(data => {
+                form.style.display = 'none'; // Hide the form
+                successMessage.style.display = 'block'; // Display the success message
+            })
+            .catch(error => console.error('Error:', error));
+            return true;
+        });
+    });
+</script>

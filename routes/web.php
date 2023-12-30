@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,8 @@ Route::middleware(['guestOrVerified'])->group(function () {
         Route::post('/remove/{product:slug}', [CartController::class, 'remove'])->name('remove');
         Route::post('/update-quantity/{product:slug}', [CartController::class, 'updateQuantity'])->name('update-quantity');
     });
+    Route::get('/subscribe', [SubscriptionController::class, 'create'])->name('subscribe.create');
+    Route::post('/subscribe', [SubscriptionController::class, 'store'])->name('subscribe.store');
 });
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('demo/profile', [ProfileController::class, 'view'])->name('profile');
