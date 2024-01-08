@@ -5,7 +5,7 @@
             <h2 class="text-3xl font-bold tracking-tight text-white md:text-gray-900 sm:text-4xl md:text-6xl drop-shadow-lg md:drop-shadow-none">{{__('Get vintage. Get real.')}}</h2>
             <p class="my-8 text-xl text-white md:text-gray-500 drop-shadow-lg md:drop-shadow-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <div class="w-auto">
-                <a href="{{ route('product.index') }}" class="btn-primary">{{__('Shop Collection')}}</a>
+                <a href="{{ route('categories.index') }}" class="btn-primary">{{__('Shop Collection')}}</a>
             </div>
         </div>
     </div>

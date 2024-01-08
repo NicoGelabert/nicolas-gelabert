@@ -4,6 +4,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
@@ -25,9 +26,10 @@ use Inertia\Inertia;
 Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/demo',[WelcomeController::class, 'index'])->name('welcome');
     Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
-    
-    Route::get('demo/products', [ProductController::class, 'index'])->name('product.index');
-    Route::get('demo/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
+    Route::get('/demo/categories', [CategoriesController::class, 'index'])->name('categories.index');
+    Route::get('/demo/categories/{categories:slug}', [CategoriesController::class, 'view'])->name('categories.view');
+    // Route::get('demo/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('demo/categories/{categories:slug}/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
     Route::prefix('demo/cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');

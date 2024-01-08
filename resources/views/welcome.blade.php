@@ -44,7 +44,7 @@
                 <ul class="splide__list">
                     @foreach($products as $product)
                     <li class="splide__slide border-transparent overflow-hidden rounded-lg bg-white">
-                        <a href="{{ route('product.view', $product->slug) }}"
+                        <a href="{{ route('product.view', [$product->category?->slug, $product->slug ]) }}"
                         class="aspect-w-3 aspect-h-2 block">
                             <img src="{{ $product->image }}" alt="{{$product->title}}"
                             class="card-image object-cover hover:scale-105 hover:rotate-1 transition-transform">
