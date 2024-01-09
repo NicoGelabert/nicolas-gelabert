@@ -13,6 +13,9 @@
                     <div id="successMessage" style="display: none;">
                         {{__('Subscription successful!')}}
                     </div>
+                    <div id="errorMessage" style="display: none;">
+                        Subscription failed. Please try again.
+                    </div>
                 </div>
             </div>
             <div class="w-full md:w-1/2 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
@@ -46,22 +49,32 @@
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('subscriptionForm');
         const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
 
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent default form submission behavior
 
-            // Fetch API or Axios can be used for AJAX request
-            fetch('{{ route("subscribe.store") }}', {
-                method: 'POST',
-                body: new FormData(form),
-            })
-            .then(response => response.json())
-            .then(data => {
-                form.style.display = 'none'; // Hide the form
-                successMessage.style.display = 'block'; // Display the success message
-            })
-            .catch(error => console.error('Error:', error));
-            return true;
+            const email = document.getElementById('emailInput').value;
+            try {
+                const response = await fetch('{{ route("subscribe.store") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    successMessage.style.display = 'block';
+                    form.style.display = 'none';
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.style.display = 'block';
+            }
         });
     });
 </script>

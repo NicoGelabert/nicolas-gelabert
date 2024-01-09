@@ -1,11 +1,14 @@
 <?php
 
+// app/Mail/SubscriptionConfirmation.php
+
 namespace App\Mail;
 
-use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Subscription;
 
 class SubscriptionConfirmation extends Mailable
 {
@@ -20,7 +23,7 @@ class SubscriptionConfirmation extends Mailable
 
     public function build()
     {
-        return $this->view('mails.subscription_confirmation')
-                    ->subject('Subscription Confirmation');
+        return $this->view('mail.subscription_confirmation')
+                    ->subject('Confirmation Email');
     }
 }

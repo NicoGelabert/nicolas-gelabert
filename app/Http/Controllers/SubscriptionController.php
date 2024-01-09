@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Subscription;
 use App\Events\SubscriptionCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SubscriptionConfirmation;
 
 class SubscriptionController extends Controller
 {
@@ -23,8 +25,13 @@ class SubscriptionController extends Controller
             'email' => $request->email,
         ]);
 
-        event(new SubscriptionCreated($subscription));
-
-        return response()->json(['message' => 'Subscribed successfully']);
+        try {
+            // Send confirmation email to the subscriber
+            Mail::to($subscription->email)->send(new SubscriptionConfirmation($subscription));
+            
+            return response()->json(['message' => 'Subscribed successfully!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to subscribe. Please try again.'], 500);
+        }
     }
 }
