@@ -93,9 +93,14 @@
                 </div>
             </div>
             <div class="w-full md:w-1/2 product-view" id="texto">
-                <h1 class="text-3xl font-semibold">
-                    {{$product->title}}
-                </h1>
+                <div class="flex flex-col">
+                    <a href="{{ route('categories.view', $product->category?->slug) }}" class="aspect-w-3 aspect-h-2 block">
+                        <p class="small-text category_subtitle">{{$product->category?->name}}</p>
+                    </a>
+                    <h1 class="text-3xl font-semibold">
+                        {{$product->title}}
+                    </h1>
+                </div>
                 <!-- <label for="quantity" class="block font-bold mr-4">
                     Quantity
                 </label> -->
