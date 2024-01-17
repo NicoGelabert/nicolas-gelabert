@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container lg:w-2/3 xl:w-2/3 mx-auto">
+    <div class="container lg:w-2/3 xl:w-2/3 mx-auto pt-32 pb-16">
         <h1 class="text-3xl font-bold mb-6">{{__('Your Cart Items')}}</h1>
 
         <div x-data="{
@@ -11,8 +11,9 @@
                         'image' => $product->image,
                         'title' => $product->title,
                         'price' => $product->price,
+                        'category' => $product->category?->name,
                         'quantity' => $cartItems[$product->id]['quantity'],
-                        'href' => route('product.view', $product->slug),
+                        'href' => route('product.view', [$product->category?->slug, $product->slug ]),
                         'removeUrl' => route('cart.remove', $product),
                         'updateQuantityUrl' => route('cart.update-quantity', $product)
                     ])
@@ -24,10 +25,10 @@
         }" class="bg-white p-4 rounded-lg shadow">
             <!-- Product Items -->
             <template x-if="cartItems.length">
-                <div class="flex flex-wrap justify-between">
+                <div class="flex flex-wrap flex-col justify-center">
                     <!-- Product Item -->
                     <template x-for="product of cartItems" :key="product.id">
-                        <div x-data="productItem(product)">
+                        <div x-data="productItem(product)" class="py-6 border-b">
                             <div
                                 class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
                                 <a :href="product.href"
@@ -35,8 +36,11 @@
                                     <img :src="product.image" class="object-cover" alt=""/>
                                 </a>
                                 <div class="flex flex-col justify-between flex-1">
-                                    <div class="flex flex-col items-center mb-3">
-                                        <h3 x-text="product.title"></h3>
+                                    <div class="flex flex-col sm:flex-row items-center sm:items-end sm:justify-between mb-3">
+                                        <div class="flex flex-col items-center sm:items-start">
+                                            <p class="small-text" x-text="product.category"></p>
+                                            <h3 x-text="product.title"></h3>
+                                        </div>
                                         <span class="text-lg font-semibold">
                                             $<span x-text="product.price"></span>
                                         </span>
@@ -49,7 +53,7 @@
                                                 min="1"
                                                 x-model="product.quantity"
                                                 @change="changeQuantity()"
-                                                class="ml-3 py-1 border-gray-200 focus:border-purple-600 focus:ring-purple-600 w-16"
+                                                class="ml-3 py-1 border-none w-16"
                                             />
                                         </div>
                                         <a
@@ -62,13 +66,12 @@
                                 </div>
                             </div>
                             <!--/ Product Item -->
-                            <hr class="my-5"/>
                         </div>
                     </template>
                     <!-- Product Item -->
 
-                    <div class="border-t border-gray-300 pt-4">
-                        <div class="flex justify-between">
+                    <div class="pt-6">
+                        <div class="flex justify-between align-center">
                             <span class="font-semibold">Subtotal</span>
                             <span id="cartTotal" class="text-xl" x-text="`$${cartTotal}`"></span>
                         </div>
@@ -76,9 +79,9 @@
                             {{__('Shipping and taxes calculated at checkout.')}}
                         </p>
 
-                        <form action="{{route('cart.checkout')}}" method="post">
+                        <form action="{{route('cart.checkout')}}" method="post" class="flex justify-center sm:justify-end">
                             @csrf
-                            <button type="submit" class="btn-primary w-full py-3 text-lg">
+                            <button type="submit" class="btn-primary w-auto py-3 text-lg">
                                 {{__('Proceed to Checkout')}}
                             </button>
                         </form>

@@ -162,6 +162,35 @@ body{
             }
         }
     }
+    // Quantity
+    .quantity {
+        align-items: stretch;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    .quantity .qty {
+        background-color:transparent;
+        border: 0;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 0;
+        text-align: center;
+        width: 50px;
+    }
+    .quantity button{
+        color:white;
+        height:auto;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
     // SPLIDE Home carousel
     #image-carousel{
         ul li{
