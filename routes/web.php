@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\CvController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,7 @@ use Inertia\Inertia;
 */
 
 Route::middleware(['guestOrVerified'])->group(function () {
+    Route::get('/', [CvController::class, 'index']);
     Route::get('/demo',[WelcomeController::class, 'index'])->name('welcome');
     Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
     Route::get('/demo/categories', [CategoriesController::class, 'index'])->name('categories.index');

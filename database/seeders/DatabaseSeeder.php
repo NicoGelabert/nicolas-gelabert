@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
             // AdminUserSeeder::class,
             // CountrySeeder::class,
             // ProductSeeder::class,
-            CategoriesSeeder::class,
+            // CategoriesSeeder::class,
+            ExperienceSeeder::class,
+            EducationSeeder::class,
         ]);
     }
 }
