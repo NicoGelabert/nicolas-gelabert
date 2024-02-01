@@ -41,9 +41,9 @@
         .carousel {
             @apply p-6;
             .dragging {
-                a{
-                    pointer-events: none;
-                }
+                // a{
+                //     pointer-events: none;
+                // }
             }
             .carousel__wrapper {
                 margin-bottom: 24px;
