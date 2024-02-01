@@ -128,9 +128,11 @@
                 }
             }
             .carousel__controls {
-                display: grid;
-                grid-auto-flow: column;
-                grid-gap: 24px;
+                @apply grid grid-flow-col gap-x-3 justify-center md:justify-end;
+                // display: grid;
+                // grid-auto-flow: column;
+                // grid-gap: 24px;
+                // justify-content: right;
             }
             .carousel__arrow {
                 align-items: center;
