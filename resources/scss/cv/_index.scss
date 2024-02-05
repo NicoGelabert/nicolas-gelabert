@@ -1,6 +1,21 @@
 @use '../globals/variables' as *;
-
+html{scroll-behavior: smooth;}
 #body-content-cv{
+    .btn-prymary{
+        @apply py-2 px-4 rounded-full shadow-md w-auto hover:bg-[#A8EB12] hover:text-white transition-colors;
+        background-color: $white;
+        color: $primary-cv-color;
+    }
+    .btn-demo{
+        @apply py-2 px-4 rounded-full shadow-md w-auto hover:bg-white hover:text-[#A8EB12] transition-colors cursor-pointer;
+        background-color: $primary-cv-color;
+        color: $white;
+    }
+    .section_headline{
+        color: $black;
+        font-family: $secondary-cv-font;
+        @apply text-xl uppercase;
+    }
     header{
         @apply h-auto;
         .preheader{
@@ -28,11 +43,6 @@
         }
         .underline-hover::after {
             background-color: $primary-cv-color;
-        }
-        .btn-demo{
-            @apply py-2 px-4 rounded-full shadow-md w-full hover:bg-white hover:text-[#A8EB12] transition-colors;
-            background-color: $primary-cv-color;
-            color: $white;
         }
     }
     //experience carousel

@@ -1,6 +1,6 @@
 <x-guest-layout>
 	<!-- Curriculum starts -->
-	<div class="container" id="curriculum-vitae">
+	<div class="container pt-32" id="curriculum-vitae">
 		<div class="carousel">
 			<div class="carousel__wrapper">
 				<div class="carousel__header">
@@ -106,18 +106,19 @@
 	</div>
 	<!-- Curriculum ends -->
 	<!-- Portfolio starts -->
-	<section id="portfolio" class="border flex flex-col gap-16 mb-12">
+	<section id="portfolio" class="flex flex-col gap-16 mb-12 container mx-auto p-6">
 		<div class="subtitle flex justify-end sticky top-8 right-0 -z-[3]">
 			<h3 class="relative origin-center text-3xl sm:text-6xl md:text-7xl font-semibold opacity-10 uppercase">{{__('Portfolio')}}</h3>
 		</div>
+		<h2 class="section_headline">{{__('Diseño Gráfico')}}</h2>
 		<div x-data="galleryItems()"
 			@image-gallery-next.window="imageGalleryNext()"
 			@image-gallery-prev.window="imageGalleryPrev()"
 			@keyup.right.window="imageGalleryNext();"
 			@keyup.left.window="imageGalleryPrev();"
 			class="w-full h-full select-none">
-			<div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-				<ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 mx-6 xl:mx-auto lg:grid-cols-5">
+			<div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);" x-data="{ expanded: false }">
+				<ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 mx-6 xl:mx-auto lg:grid-cols-5" x-show="expanded" x-collapse.min.300px>
 					<template x-for="(image, index) in imageGallery">
 						<li>
 							<div class="portfolio-card">
@@ -133,6 +134,12 @@
 						</li>
 					</template>
 				</ul>
+				<button 
+					@click="expanded = ! expanded"
+					class="btn-prymary float-right my-8"
+					x-text="expanded ? 'Ver menos' : 'Ver más'"
+					>
+				</button>
 			</div>
 			<template x-teleport="body">
 				<div
@@ -168,6 +175,12 @@
 					</div>
 				</div>
 			</template>
+		</div>
+		<h2 class="section_headline">{{__('Desarrollo Web')}}</h2>
+		<div class="flex justify-center gap-8">
+			<a href="{{ route('welcome') }}" target="blank" class="btn-demo">Ver demo Vue</a>
+			<a href="https://nifty-booth-702758.netlify.app/" target="blank" class="btn-demo">Ver demo React</a>
+			<a href="" class="btn-demo hidden">Ver demo player</a>
 		</div>
 	</section>
 	<!-- Portfolio ends -->
