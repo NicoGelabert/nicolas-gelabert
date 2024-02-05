@@ -101,91 +101,91 @@ document.addEventListener("alpine:init", async () => {
       imageGalleryImageIndex: null,
       imageGallery: [
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/el-parquimetro-homanaje-a-fernando-pena.jpg',
+        'photo': 'storage/images/cv/portfolio/el-parquimetro-homanaje-a-fernando-pena.jpg',
         'alt': 'Photo of Mountains',
         'caption': 'Homenaje a Fernando Peña',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/publi-carrera-produccion.jpg',
+        'photo': 'storage/images/cv/portfolio/publi-carrera-produccion.jpg',
         'alt': 'Photo of Mountains 02',
         'caption': 'Promo Carrera de Producción',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/eter-sos-lo-que-estudias.png',
+        'photo': 'storage/images/cv/portfolio/eter-sos-lo-que-estudias.png',
         'alt': 'Photo of Mountains 03',
         'caption': 'Mick',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/isologo-sur-comunica.jpg',
+        'photo': 'storage/images/cv/portfolio/isologo-sur-comunica.jpg',
         'alt': 'Photo of Mountains 04',
         'caption': 'Isologo Sur Comunica',
         'client': 'Sur Comunica'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/arte-stone.jpg',
+        'photo': 'storage/images/cv/portfolio/arte-stone.jpg',
         'alt': 'Photo of Mountains 05',
         'caption': 'Arte Stone',
         'client': 'Inspiración Rolling Stone'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/amor.jpg',
+        'photo': 'storage/images/cv/portfolio/amor.jpg',
         'alt': 'Photo of Mountains 06',
         'caption': 'Amor',
         'client': 'Licenciada Graciela Antes'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/isologo-100-anos-de-radio.jpg',
+        'photo': 'storage/images/cv/portfolio/isologo-100-anos-de-radio.jpg',
         'alt': 'Photo of Mountains 07',
         'caption': 'Isologo 100 años de radio',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/logotipo-rada.jpg',
+        'photo': 'storage/images/cv/portfolio/logotipo-rada.jpg',
         'alt': 'Photo of Mountains 08',
         'caption': 'Logo Rada',
         'client': 'Rada Zapatos'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/publi-eter-carreras.jpg',
+        'photo': 'storage/images/cv/portfolio/publi-eter-carreras.jpg',
         'alt': 'Photo of Mountains 09',
         'caption': 'Promo ETER Carreras',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/isologo-bamboo-sushi-wok.jpg',
+        'photo': 'storage/images/cv/portfolio/isologo-bamboo-sushi-wok.jpg',
         'alt': 'Photo of Mountains 10',
         'caption': 'Isologo Bamboo',
         'client': 'Bamboo Sushi & Wok'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/publi-johnny-walker.jpg',
+        'photo': 'storage/images/cv/portfolio/publi-johnny-walker.jpg',
         'alt': 'Photo of Mountains 10',
         'caption': 'Publi Johnnie Walker',
         'client': 'Escuela de Creativos Publicitarios'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/editorial-skatalites.jpg',
+        'photo': 'storage/images/cv/portfolio/editorial-skatalites.jpg',
         'alt': 'Photo of Mountains 10',
         'caption': 'Diseño Editorial - Skatalites',
         'client': 'Escuela de Creativos Publicitarios'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/premioseter-diploma.png',
+        'photo': 'storage/images/cv/portfolio/premioseter-diploma.png',
         'alt': 'Photo of Mountains 10',
         'caption': 'Diploma Premios ETER',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/nunca-mas-pandemia.jpg',
+        'photo': 'storage/images/cv/portfolio/nunca-mas-pandemia.jpg',
         'alt': 'Photo of Mountains 10',
         'caption': 'Efeméride 24 de marzo',
         'client': 'ETER'
         },
         {
-        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/eter-senalador.png',
+        'photo': 'storage/images/cv/portfolio/eter-senalador.png',
         'alt': 'Photo of Mountains 10',
         'caption': 'Señalador ETER carreras',
         'client': 'ETER'
