@@ -111,70 +111,73 @@
 			<h3 class="relative origin-center text-3xl sm:text-6xl md:text-7xl font-semibold opacity-10 uppercase">{{__('Portfolio')}}</h3>
 		</div>
 		<h2 class="section_headline">{{__('Diseño Gráfico')}}</h2>
-		<div x-data="galleryItems()"
-			@image-gallery-next.window="imageGalleryNext()"
-			@image-gallery-prev.window="imageGalleryPrev()"
-			@keyup.right.window="imageGalleryNext();"
-			@keyup.left.window="imageGalleryPrev();"
-			class="w-full h-full select-none">
-			<div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);" x-data="{ expanded: false }">
-				<ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 mx-6 xl:mx-auto lg:grid-cols-5" x-show="expanded" x-collapse.min.300px>
-					<template x-for="(image, index) in imageGallery">
-						<li>
-							<div class="portfolio-card">
-								<img x-on:click="imageGalleryOpen" :src="image.photo" :alt="image.alt" :data-index="index+1" 
-								:data-caption="image.caption"
-								:data-client="image.client"
-								class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4] ">
-								<div class="portfolio-overlay">
-									<p x-text="image.client" class="client font-semibold leading-tight pt-1 text-xs text-white uppercase relative z-[3]"></p>
-									<p x-text="image.caption" class="caption leading-tight pt-1 text-white relative z-[3]"></p>
+		<div x-data="{ expanded: false }">
+			<div x-data="galleryItems()"
+				@image-gallery-next.window="imageGalleryNext()"
+				@image-gallery-prev.window="imageGalleryPrev()"
+				@keyup.right.window="imageGalleryNext();"
+				@keyup.left.window="imageGalleryPrev();"
+				class="w-full h-full select-none"
+				x-show="expanded" x-collapse.min.300px>
+				<div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+					<ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 mx-6 xl:mx-auto lg:grid-cols-5">
+						<template x-for="(image, index) in imageGallery">
+							<li>
+								<div class="portfolio-card">
+									<img x-on:click="imageGalleryOpen" :src="image.photo" :alt="image.alt" :data-index="index+1" 
+									:data-caption="image.caption"
+									:data-client="image.client"
+									class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4] ">
+									<div class="portfolio-overlay">
+										<p x-text="image.client" class="client font-semibold leading-tight pt-1 text-xs text-white uppercase relative z-[3]"></p>
+										<p x-text="image.caption" class="caption leading-tight pt-1 text-white relative z-[3]"></p>
+									</div>
 								</div>
+							</li>
+						</template>
+					</ul>
+				</div>
+				<template x-teleport="body">
+					<div
+						x-show="imageGalleryOpened"
+						x-transition:enter="transition ease-in-out duration-300"
+						x-transition:enter-start="opacity-0"
+						x-transition:leave="transition ease-in-in duration-300"
+						x-transition:leave-end="opacity-0"
+						@click="imageGalleryClose"
+						@keydown.window.escape="imageGalleryClose"
+						x-trap.inert.noscroll="imageGalleryOpened"
+						class="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50 select-none cursor-zoom-out" x-cloak>
+						<div class="relative flex items-center justify-center w-11/12 xl:w-4/5 h-11/12">
+							<div @click="$event.stopPropagation(); $dispatch('image-gallery-prev')" class="absolute left-0 flex items-center justify-center text-white translate-x-10 rounded-full cursor-pointer xl:-translate-x-24 2xl:-translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">
+								<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
 							</div>
-						</li>
-					</template>
-				</ul>
-				<button 
-					@click="expanded = ! expanded"
-					class="btn-prymary float-right my-8"
-					x-text="expanded ? 'Ver menos' : 'Ver más'"
-					>
-				</button>
-			</div>
-			<template x-teleport="body">
-				<div
-					x-show="imageGalleryOpened"
-					x-transition:enter="transition ease-in-out duration-300"
-					x-transition:enter-start="opacity-0"
-					x-transition:leave="transition ease-in-in duration-300"
-					x-transition:leave-end="opacity-0"
-					@click="imageGalleryClose"
-					@keydown.window.escape="imageGalleryClose"
-					x-trap.inert.noscroll="imageGalleryOpened"
-					class="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50 select-none cursor-zoom-out" x-cloak>
-					<div class="relative flex items-center justify-center w-11/12 xl:w-4/5 h-11/12">
-						<div @click="$event.stopPropagation(); $dispatch('image-gallery-prev')" class="absolute left-0 flex items-center justify-center text-white translate-x-10 rounded-full cursor-pointer xl:-translate-x-24 2xl:-translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">
-							<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-						</div>
-						<div class="flex flex-col justify-center items-center  py-16">
-							<img
-								x-show="imageGalleryOpened"
-								x-transition:enter="transition ease-in-out duration-300"
-								x-transition:enter-start="opacity-0 transform scale-50"
-								x-transition:leave="transition ease-in-in duration-300"
-								x-transition:leave-end="opacity-0 transform scale-50"
-								class="object-contain object-center w-10/12 max-h-screen select-none cursor-zoom-out" :src="imageGalleryActiveUrl" :alt="imageGalleryActiveAlt"
-								:data-caption="imageGalleryActiveCaption"
-								style="display: none;">
-								<p x-text="imageGalleryActiveCaption" class="text-white font-bold mt-2"></p>
-								<p x-text="imageGalleryActiveClient" class="text-white font-bold mt-2 text-xs"></p>
-						</div>
-						<div @click="$event.stopPropagation(); $dispatch('image-gallery-next');" class="absolute right-0 flex items-center justify-center text-white -translate-x-10 rounded-full cursor-pointer xl:translate-x-24 2xl:translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">
-							<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+							<div class="flex flex-col justify-center items-center  py-16">
+								<img
+									x-show="imageGalleryOpened"
+									x-transition:enter="transition ease-in-out duration-300"
+									x-transition:enter-start="opacity-0 transform scale-50"
+									x-transition:leave="transition ease-in-in duration-300"
+									x-transition:leave-end="opacity-0 transform scale-50"
+									class="object-contain object-center w-10/12 max-h-screen select-none cursor-zoom-out" :src="imageGalleryActiveUrl" :alt="imageGalleryActiveAlt"
+									:data-caption="imageGalleryActiveCaption"
+									style="display: none;">
+									<p x-text="imageGalleryActiveCaption" class="text-white font-bold mt-2"></p>
+									<p x-text="imageGalleryActiveClient" class="text-white font-bold mt-2 text-xs"></p>
+							</div>
+							<div @click="$event.stopPropagation(); $dispatch('image-gallery-next');" class="absolute right-0 flex items-center justify-center text-white -translate-x-10 rounded-full cursor-pointer xl:translate-x-24 2xl:translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">
+								<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+							</div>
 						</div>
 					</div>
-				</div>
-			</template>
+				</template>
+			</div>
+			<button 
+				@click="expanded = ! expanded"
+				class="btn-prymary float-right my-8"
+				x-text="expanded ? 'Ver menos' : 'Ver más'"
+				>
+			</button>
 		</div>
 		<h2 class="section_headline">{{__('Desarrollo Web')}}</h2>
 		<div class="flex justify-center gap-8">
