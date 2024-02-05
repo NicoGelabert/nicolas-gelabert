@@ -1,4 +1,5 @@
 <x-guest-layout>
+	<!-- Curriculum starts -->
 	<div class="container" id="curriculum-vitae">
 		<div class="carousel">
 			<div class="carousel__wrapper">
@@ -14,7 +15,7 @@
 							</div>
 							<div class="carousel__description">
 								<p class="small-text subtitle">{{ $experience -> timelapse}}</p>
-								<h3>{{ $experience -> title}}</h3>
+								<h3 class="tracking-wide">{{ $experience -> title}}</h3>
 								<div class="flex justify-between items-center">
 									<p class="small-text opacity-50">{{ $experience -> company}}</p>
 									@if ( $experience -> site )
@@ -64,7 +65,7 @@
 							</div>
 							<div class="carousel__description">
 								<p class="small-text subtitle">{{ $education -> timelapse}}</p>
-								<h3>{{ $education -> title}}</h3>
+								<h3 class="tracking-wide">{{ $education -> title}}</h3>
 								<div class="flex justify-between items-center">
 									<p class="small-text opacity-50">{{ $education -> school}}</p>
 									@if ( $education -> site )
@@ -103,11 +104,137 @@
 			</div>
 		</div>
 	</div>
+	<!-- Curriculum ends -->
+	<!-- Portfolio starts -->
+	<section id="portfolio" class="border flex flex-col gap-16 mb-12">
+		<div class="subtitle flex justify-end sticky top-8 right-0 -z-[3]">
+			<h3 class="relative origin-center text-3xl sm:text-6xl md:text-7xl font-semibold opacity-10 uppercase">{{__('Portfolio')}}</h3>
+		</div>
+		<div x-data="galleryItems()"
+			@image-gallery-next.window="imageGalleryNext()"
+			@image-gallery-prev.window="imageGalleryPrev()"
+			@keyup.right.window="imageGalleryNext();"
+			@keyup.left.window="imageGalleryPrev();"
+			class="w-full h-full select-none">
+			<div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
+				<ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 mx-6 xl:mx-auto lg:grid-cols-5">
+					<template x-for="(image, index) in imageGallery">
+						<li>
+							<div class="portfolio-card">
+								<img x-on:click="imageGalleryOpen" :src="image.photo" :alt="image.alt" :data-index="index+1" 
+								:data-caption="image.caption"
+								:data-client="image.client"
+								class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4] ">
+								<div class="portfolio-overlay">
+									<p x-text="image.client" class="client font-semibold leading-tight pt-1 text-xs text-white uppercase relative z-[3]"></p>
+									<p x-text="image.caption" class="caption leading-tight pt-1 text-white relative z-[3]"></p>
+								</div>
+							</div>
+						</li>
+					</template>
+				</ul>
+			</div>
+			<template x-teleport="body">
+				<div
+					x-show="imageGalleryOpened"
+					x-transition:enter="transition ease-in-out duration-300"
+					x-transition:enter-start="opacity-0"
+					x-transition:leave="transition ease-in-in duration-300"
+					x-transition:leave-end="opacity-0"
+					@click="imageGalleryClose"
+					@keydown.window.escape="imageGalleryClose"
+					x-trap.inert.noscroll="imageGalleryOpened"
+					class="fixed inset-0 z-[99] flex items-center justify-center bg-black bg-opacity-50 select-none cursor-zoom-out" x-cloak>
+					<div class="relative flex items-center justify-center w-11/12 xl:w-4/5 h-11/12">
+						<div @click="$event.stopPropagation(); $dispatch('image-gallery-prev')" class="absolute left-0 flex items-center justify-center text-white translate-x-10 rounded-full cursor-pointer xl:-translate-x-24 2xl:-translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">
+							<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+						</div>
+						<div class="flex flex-col justify-center items-center  py-16">
+							<img
+								x-show="imageGalleryOpened"
+								x-transition:enter="transition ease-in-out duration-300"
+								x-transition:enter-start="opacity-0 transform scale-50"
+								x-transition:leave="transition ease-in-in duration-300"
+								x-transition:leave-end="opacity-0 transform scale-50"
+								class="object-contain object-center w-10/12 max-h-screen select-none cursor-zoom-out" :src="imageGalleryActiveUrl" :alt="imageGalleryActiveAlt"
+								:data-caption="imageGalleryActiveCaption"
+								style="display: none;">
+								<p x-text="imageGalleryActiveCaption" class="text-white font-bold mt-2"></p>
+								<p x-text="imageGalleryActiveClient" class="text-white font-bold mt-2 text-xs"></p>
+						</div>
+						<div @click="$event.stopPropagation(); $dispatch('image-gallery-next');" class="absolute right-0 flex items-center justify-center text-white -translate-x-10 rounded-full cursor-pointer xl:translate-x-24 2xl:translate-x-32 bg-white/10 w-14 h-14 hover:bg-white/20">
+							<svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+						</div>
+					</div>
+				</div>
+			</template>
+		</div>
+	</section>
+	<!-- Portfolio ends -->
 </x-guest-layout>
 
 <style>
 	.subtitle h3{
 		font-family: "Lexend Zetta", sans-serif;
+	}
+	#gallery li .portfolio-card{
+		position:relative;
+		transition: 0.5s ease-in-out;
+		display: flex;
+		align-items: flex-end;
+		background-color: #fff;
+		box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+		transition: 0.5s ease-in-out;
+	}
+	#gallery li .portfolio-card:hover{
+		transform: translateY(10px);
+	}
+	/* #gallery li .portfolio-card::after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to bottom, rgba(0, 176, 155, 0.5), rgba(150, 201, 61, 1));
+		z-index: 2;
+		transition: 0.5s all;
+		opacity: 0;
+		mix-blend-mode: multiply;
+	} */
+	/* #gallery li .portfolio-card:hover::after {
+		opacity: 1;
+	} */
+	#gallery li .portfolio-card .portfolio-overlay{
+		position: absolute;
+		padding: 3rem 1rem 1rem;
+		z-index: 3;
+		color: #000;
+		opacity: 0;
+		transform: translateY(20px);
+		transition: 0.5s all;
+		width:100%;
+	}
+	#gallery li .portfolio-card .portfolio-overlay::before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+		z-index: 2;
+		transition: 1s all;
+		opacity: 0;
+	}
+	#gallery li .portfolio-card:hover .portfolio-overlay::before {
+		opacity: 1;
+	}
+	#gallery li .portfolio-card:hover .portfolio-overlay{
+		opacity: 1;
+		transform: translateY(0px);
 	}
 </style>
 

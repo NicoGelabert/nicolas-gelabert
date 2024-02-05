@@ -2,11 +2,13 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse'
+import focus from '@alpinejs/focus'
 import {get, post} from "./http.js";
 import 'flowbite';
 import Splide from '@splidejs/splide';
 
 Alpine.plugin(collapse)
+Alpine.plugin(focus)
 
 window.Alpine = Alpine;
 
@@ -89,6 +91,133 @@ document.addEventListener("alpine:init", async () => {
       },
     };
   });
+  Alpine.data("galleryItems", () => {
+    return {
+      imageGalleryOpened: false,
+      imageGalleryActiveUrl: null,
+      imageGalleryActiveAlt: null,
+      imageGalleryActiveCaption: null,
+      imageGalleryActiveClient: null,
+      imageGalleryImageIndex: null,
+      imageGallery: [
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/el-parquimetro-homanaje-a-fernando-pena.jpg',
+        'alt': 'Photo of Mountains',
+        'caption': 'Homenaje a Fernando Peña',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/publi-carrera-produccion.jpg',
+        'alt': 'Photo of Mountains 02',
+        'caption': 'Promo Carrera de Producción',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/eter-sos-lo-que-estudias.png',
+        'alt': 'Photo of Mountains 03',
+        'caption': 'Mick',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/isologo-sur-comunica.jpg',
+        'alt': 'Photo of Mountains 04',
+        'caption': 'Isologo Sur Comunica',
+        'client': 'Sur Comunica'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/arte-stone.jpg',
+        'alt': 'Photo of Mountains 05',
+        'caption': 'Arte Stone',
+        'client': 'Inspiración Rolling Stone'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/amor.jpg',
+        'alt': 'Photo of Mountains 06',
+        'caption': 'Amor',
+        'client': 'Licenciada Graciela Antes'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/isologo-100-anos-de-radio.jpg',
+        'alt': 'Photo of Mountains 07',
+        'caption': 'Isologo 100 años de radio',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/logotipo-rada.jpg',
+        'alt': 'Photo of Mountains 08',
+        'caption': 'Logo Rada',
+        'client': 'Rada Zapatos'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/publi-eter-carreras.jpg',
+        'alt': 'Photo of Mountains 09',
+        'caption': 'Promo ETER Carreras',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/isologo-bamboo-sushi-wok.jpg',
+        'alt': 'Photo of Mountains 10',
+        'caption': 'Isologo Bamboo',
+        'client': 'Bamboo Sushi & Wok'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/publi-johnny-walker.jpg',
+        'alt': 'Photo of Mountains 10',
+        'caption': 'Publi Johnnie Walker',
+        'client': 'Escuela de Creativos Publicitarios'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/editorial-skatalites.jpg',
+        'alt': 'Photo of Mountains 10',
+        'caption': 'Diseño Editorial - Skatalites',
+        'client': 'Escuela de Creativos Publicitarios'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/premioseter-diploma.png',
+        'alt': 'Photo of Mountains 10',
+        'caption': 'Diploma Premios ETER',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/nunca-mas-pandemia.jpg',
+        'alt': 'Photo of Mountains 10',
+        'caption': 'Efeméride 24 de marzo',
+        'client': 'ETER'
+        },
+        {
+        'photo': 'http://127.0.0.1:8000/storage/images/cv/portfolio/eter-senalador.png',
+        'alt': 'Photo of Mountains 10',
+        'caption': 'Señalador ETER carreras',
+        'client': 'ETER'
+        }
+      ],
+      imageGalleryOpen(event) {
+        this.imageGalleryImageIndex = event.target.dataset.index;
+        this.imageGalleryActiveUrl = event.target.src;
+        this.imageGalleryActiveAlt = event.target.alt;
+        this.imageGalleryActiveCaption = event.target.dataset.caption;
+        this.imageGalleryActiveClient = event.target.dataset.client;
+        this.imageGalleryOpened = true;
+      },
+        imageGalleryClose() {
+        this.imageGalleryOpened = false;
+        setTimeout(() => this.imageGalleryActiveUrl = null, 300);
+      },
+      imageGalleryNext(){
+        this.imageGalleryImageIndex = (this.imageGalleryImageIndex == this.imageGallery.length) ? 1 : (parseInt(this.imageGalleryImageIndex) + 1);
+        this.imageGalleryActiveUrl = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').src;
+        this.imageGalleryActiveCaption = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').dataset.caption;
+        this.imageGalleryActiveClient = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').dataset.client;
+        },
+        imageGalleryPrev() {
+        this.imageGalleryImageIndex = (this.imageGalleryImageIndex == 1) ? this.imageGallery.length : (parseInt(this.imageGalleryImageIndex) - 1);
+        this.imageGalleryActiveUrl = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').src;
+        this.imageGalleryActiveCaption = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').dataset.caption;
+        this.imageGalleryActiveClient = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').dataset.client;
+      }
+    };
+  });
+  
 });
 
 

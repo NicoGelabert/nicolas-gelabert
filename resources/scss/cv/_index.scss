@@ -40,13 +40,7 @@
         margin: 0 auto;
         .carousel {
             @apply p-6;
-            .dragging {
-                // a{
-                //     pointer-events: none;
-                // }
-            }
             .carousel__wrapper {
-                margin-bottom: 24px;
                 position: relative;
                 &.has-arrows {
                     .carousel__content {
