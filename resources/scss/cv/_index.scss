@@ -111,8 +111,8 @@ html{scroll-behavior: smooth;}
             }
             .carousel__item {
                 max-width: 375px;
-                min-width: 300px;
-                @apply flex flex-col gap-6 p-6;
+                min-width: 350px;
+                @apply flex flex-col gap-6 px-5 py-6;
                 
                 img{
                     background-color: $white;
@@ -129,7 +129,7 @@ html{scroll-behavior: smooth;}
                     }
                     h3{
                         font-family: $primary-cv-font;
-                        @apply text-base;
+                        @apply text-xl lg:text-lg;
                     }
                 }
                 a {

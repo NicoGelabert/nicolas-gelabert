@@ -143,7 +143,7 @@
             </ul>
         </nav>
         <div class="flex md:hidden">
-            <div x-data="{open: false}" class="relative">
+            <!-- <div x-data="{open: false}" class="relative">
                 <a
                     @click="open = !open"
                     class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 underline-hover h-full"
@@ -166,7 +166,7 @@
                         @endif
                     @endforeach
                 </ul>
-            </div>
+            </div> -->
             <button
                 @click="mobileMenuOpen = !mobileMenuOpen"
                 class="p-4 block md:hidden"

@@ -17,7 +17,7 @@
 								<p class="small-text subtitle uppercase tracking-wider">{{ $experience -> timelapse}}</p>
 								<h3 class="tracking-wider">{{ $experience -> title}}</h3>
 								<div class="flex justify-between items-center">
-									<p class="small-text opacity-50">{{ $experience -> company}}</p>
+									<p class="text-sm opacity-50">{{ $experience -> company}}</p>
 									@if ( $experience -> site )
 										<a href="{{ $experience -> site}}" target="blank">
 										<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" class="w-5 opacity-50">
@@ -29,10 +29,10 @@
 								<div class="mb-6" x-data="{ expanded: false }">
 									<div
 										x-show="expanded"
-										x-collapse.min.110px
+										x-collapse.min.120px
 										class="text-gray-500 wysiwyg-content"
 									>
-										<p class="small-text font-light">{{ $experience->description }}</p>
+										<p class="text-base md:text-sm font-light">{{ $experience->description }}</p>
 									</div>
 
 									<p class="text-right" x-show="{{ strlen($experience->description) }} > 235">
@@ -68,7 +68,7 @@
 								<p class="small-text subtitle uppercase tracking-wider">{{ $education -> timelapse}}</p>
 								<h3 class="tracking-wider">{{ $education -> title}}</h3>
 								<div class="flex justify-between items-center">
-									<p class="small-text opacity-50">{{ $education -> school}}</p>
+									<p class="text-sm opacity-50">{{ $education -> school}}</p>
 									@if ( $education -> site )
 										<a href="{{ $education -> site}}" target="blank">
 										<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" class="w-5 opacity-50">
@@ -83,7 +83,7 @@
 										x-collapse.min.110px
 										class="text-gray-500 wysiwyg-content"
 									>
-										<p class="text-sm font-light">{{ $education -> description }}<br>
+										<p class="text-base md:text-sm font-light">{{ $education -> description }}<br>
 										</p>
 									</div>
 									@if ($education->certificate)
