@@ -103,6 +103,25 @@
 				</ul>
 			</div>
 		</div>
+		<a href="{{ asset('storage/files/cv.pdf') }}" download="01-curriculum-vitae-nicolas-gelabert">
+			<div class="btns-port-web flex justify-center items-center">
+				<div class="h-16 w-16 bg-black p-4 rounded-full absolute">
+					<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" fill="#A8EB12">
+						<path d="m22,16V3h-7v1h6v12h-5.707l-1,1h-4.586l-1-1H3V4h6v-1H2v13H0v2.5c0,1.379,1.122,2.5,2.5,2.5h19c1.379,0,2.5-1.121,2.5-2.5v-2.5h-2Zm1,2.5c0,.827-.673,1.5-1.5,1.5H2.5c-.827,0-1.5-.673-1.5-1.5v-1.5h7.293l1,1h5.414l1-1h7.293v1.5Zm-11.5-7.707V0h1v10.793l3.146-3.146.707.707-3.293,3.293c-.292.292-.676.438-1.061.438s-.768-.146-1.061-.438l-3.293-3.293.707-.707,3.146,3.146Z"/>
+					</svg>
+				</div>
+				<div class="text-rotate">
+					<svg viewBox="0 0 100 100">
+						<path d="M 0,50 a 50,50 0 1,1 0,1 z" id="circle" />
+						<text>
+							<textPath xlink:href="#circle">
+								Descargar Curriculum Vitae 
+							</textPath>
+						</text>
+					</svg>
+				</div>
+			</div>
+		</a>
 	</div>
 	<!-- Curriculum ends -->
 	<!-- Portfolio starts -->
@@ -111,13 +130,13 @@
 			<h3 class="relative origin-center text-3xl sm:text-6xl md:text-7xl font-semibold opacity-10 uppercase">{{__('Portfolio')}}</h3>
 		</div>
 		<h2 class="section_headline">{{__('Diseño Gráfico')}}</h2>
-		<div x-data="{ expanded: false }">
+		<div x-data="{ expanded: false }" class="flex flex-col">
 			<div x-data="galleryItems()"
 				@image-gallery-next.window="imageGalleryNext()"
 				@image-gallery-prev.window="imageGalleryPrev()"
 				@keyup.right.window="imageGalleryNext();"
 				@keyup.left.window="imageGalleryPrev();"
-				class="w-full h-full select-none"
+				class="w-full h-full select-none pb-8"
 				x-show="expanded" x-collapse.min.300px>
 				<div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
 					<ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 mx-6 xl:mx-auto lg:grid-cols-5">
@@ -174,7 +193,7 @@
 			</div>
 			<button 
 				@click="expanded = ! expanded"
-				class="btn-prymary float-right my-8"
+				class="btn-prymary mx-auto my-4"
 				x-text="expanded ? 'Ver menos' : 'Ver más'"
 				>
 			</button>
@@ -205,23 +224,6 @@
 	#gallery li .portfolio-card:hover{
 		transform: translateY(10px);
 	}
-	/* #gallery li .portfolio-card::after {
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(to bottom, rgba(0, 176, 155, 0.5), rgba(150, 201, 61, 1));
-		z-index: 2;
-		transition: 0.5s all;
-		opacity: 0;
-		mix-blend-mode: multiply;
-	} */
-	/* #gallery li .portfolio-card:hover::after {
-		opacity: 1;
-	} */
 	#gallery li .portfolio-card .portfolio-overlay{
 		position: absolute;
 		padding: 3rem 1rem 1rem;
@@ -251,6 +253,27 @@
 	#gallery li .portfolio-card:hover .portfolio-overlay{
 		opacity: 1;
 		transform: translateY(0px);
+	}
+	.btns-port-web .text-rotate svg {
+		overflow: visible;
+		animation: circular-text-rotate 5s linear paused infinite;
+		width: 100px;
+    	letter-spacing: 0.24rem;
+		font-weight:bold;
+	}
+	.btns-port-web .text-rotate svg:hover {
+		animation-play-state: running;
+	}
+	.btns-port-web .text-rotate path {
+		fill: none;
+	}
+	.btns-port-web .text-rotate text {
+		fill: black;
+	}
+	@keyframes circular-text-rotate {
+		to {
+		transform: rotate(1turn);
+		}
 	}
 </style>
 
