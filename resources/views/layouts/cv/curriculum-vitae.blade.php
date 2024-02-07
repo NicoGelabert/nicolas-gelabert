@@ -14,8 +14,8 @@
 								<img class="carousel__item__image" src="{{ $experience -> image}}" alt=""/>
 							</div>
 							<div class="carousel__description">
-								<p class="small-text subtitle">{{ $experience -> timelapse}}</p>
-								<h3 class="tracking-wide">{{ $experience -> title}}</h3>
+								<p class="small-text subtitle uppercase tracking-wider">{{ $experience -> timelapse}}</p>
+								<h3 class="tracking-wider">{{ $experience -> title}}</h3>
 								<div class="flex justify-between items-center">
 									<p class="small-text opacity-50">{{ $experience -> company}}</p>
 									@if ( $experience -> site )
@@ -39,9 +39,12 @@
 										<a
 											@click="expanded = !expanded"
 											href="javascript:void(0)"
-											class="small-text"
-											x-text="expanded ? 'Leer menos' : 'Leer más'"
-										></a>
+										>
+											<svg class="shrink-0 my-4" width="16" height="16" fill="#A8EB12" xmlns="http://www.w3.org/2000/svg">
+												<rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
+												<rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
+											</svg>
+										</a>
 									</p>
 								</div>
 							</div>
@@ -49,9 +52,7 @@
 					@endforeach
 				</ul>
 			</div>
-			<div class="subtitle flex justify-end sticky bottom-8 right-0 -z-[3]">
-				<h3 class="relative origin-center text-3xl sm:text-6xl md:text-7xl font-semibold opacity-10 uppercase">{{__('Curriculum')}}</h3>
-			</div>
+			
 			<div class="carousel__wrapper">
 				<div class="carousel__header">
 					<h2 class="carousel__headline">{{__('Educación')}}</h2>
@@ -64,8 +65,8 @@
 								<img class="carousel__item__image" src="{{ $education -> image}}" alt=""/>
 							</div>
 							<div class="carousel__description">
-								<p class="small-text subtitle">{{ $education -> timelapse}}</p>
-								<h3 class="tracking-wide">{{ $education -> title}}</h3>
+								<p class="small-text subtitle uppercase tracking-wider">{{ $education -> timelapse}}</p>
+								<h3 class="tracking-wider">{{ $education -> title}}</h3>
 								<div class="flex justify-between items-center">
 									<p class="small-text opacity-50">{{ $education -> school}}</p>
 									@if ( $education -> site )
@@ -82,19 +83,22 @@
 										x-collapse.min.110px
 										class="text-gray-500 wysiwyg-content"
 									>
-									<p class="small-text font-light">{{ $education -> description }}<br>
-									@if ($education->certificate)
-										<a href="{{ $education -> certificate }}" target="blank">Certificado</a>
-									@endif
-									</p>
+										<p class="text-sm font-light">{{ $education -> description }}<br>
+										</p>
 									</div>
-									<p class="text-right" x-show="{{ strlen($education -> description) }} > 235">
+									@if ($education->certificate)
+										<a href="{{ $education -> certificate }}" target="blank"><i class="fi fi-rs-diploma text-2xl"></i></a>
+									@endif
+									<p class="text-right tracking-wide" x-show="{{ strlen($education -> description) }} > 235">
 										<a
 											@click="expanded = !expanded"
 											href="javascript:void(0)"
-											class="small-text"
-											x-text="expanded ? 'Leer menos' : 'Leer más'"
-										></a>
+										>
+											<svg class="shrink-0 my-4" width="16" height="16" fill="#A8EB12" xmlns="http://www.w3.org/2000/svg">
+												<rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
+												<rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
+											</svg>
+										</a>
 									</p>
 								</div>
 							</div>
@@ -102,9 +106,13 @@
 					@endforeach
 				</ul>
 			</div>
+			
+			<div class="subtitle flex justify-end sticky bottom-8 right-0 -z-[3]">
+				<h3 class="relative origin-center text-3xl sm:text-6xl md:text-7xl font-semibold opacity-10 uppercase">{{__('Curriculum')}}</h3>
+			</div>
 		</div>
-		<a href="{{ asset('storage/files/cv.pdf') }}" download="01-curriculum-vitae-nicolas-gelabert">
-			<div class="btns-port-web flex justify-center items-center">
+		<div class="btns-port-web my-24">
+			<a href="{{ asset('storage/files/cv.pdf') }}" download="01-curriculum-vitae-nicolas-gelabert" class="flex justify-center items-center">
 				<div class="h-16 w-16 bg-black p-4 rounded-full absolute">
 					<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" fill="#A8EB12">
 						<path d="m22,16V3h-7v1h6v12h-5.707l-1,1h-4.586l-1-1H3V4h6v-1H2v13H0v2.5c0,1.379,1.122,2.5,2.5,2.5h19c1.379,0,2.5-1.121,2.5-2.5v-2.5h-2Zm1,2.5c0,.827-.673,1.5-1.5,1.5H2.5c-.827,0-1.5-.673-1.5-1.5v-1.5h7.293l1,1h5.414l1-1h7.293v1.5Zm-11.5-7.707V0h1v10.793l3.146-3.146.707.707-3.293,3.293c-.292.292-.676.438-1.061.438s-.768-.146-1.061-.438l-3.293-3.293.707-.707,3.146,3.146Z"/>
@@ -120,8 +128,8 @@
 						</text>
 					</svg>
 				</div>
-			</div>
-		</a>
+			</a>
+		</div>
 	</div>
 	<!-- Curriculum ends -->
 	<!-- Portfolio starts -->
@@ -193,9 +201,11 @@
 			</div>
 			<button 
 				@click="expanded = ! expanded"
-				class="btn-prymary mx-auto my-4"
-				x-text="expanded ? 'Ver menos' : 'Ver más'"
+				class="btn-primary btn-icon mx-auto my-4"
 				>
+				<svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="16" height="16" >
+					<path d="M1.51,6.079a1.492,1.492,0,0,1,1.06.44l7.673,7.672a2.5,2.5,0,0,0,3.536,0L21.44,6.529A1.5,1.5,0,1,1,23.561,8.65L15.9,16.312a5.505,5.505,0,0,1-7.778,0L.449,8.64A1.5,1.5,0,0,1,1.51,6.079Z" class="transform origin-center transition duration-200 ease-out" :class="{'!rotate-180': expanded}"/>
+				</svg>
 			</button>
 		</div>
 		<h2 class="section_headline">{{__('Desarrollo Web')}}</h2>

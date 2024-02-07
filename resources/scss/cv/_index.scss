@@ -1,7 +1,7 @@
 @use '../globals/variables' as *;
 html{scroll-behavior: smooth;}
 #body-content-cv{
-    .btn-prymary{
+    .btn-primary{
         @apply py-2 px-4 rounded-full shadow-md w-auto hover:bg-[#A8EB12] hover:text-white transition-colors;
         background-color: $white;
         color: $primary-cv-color;
@@ -10,6 +10,17 @@ html{scroll-behavior: smooth;}
         @apply py-2 px-4 rounded-full shadow-md w-auto hover:bg-white hover:text-[#A8EB12] transition-colors cursor-pointer;
         background-color: $primary-cv-color;
         color: $white;
+    }
+    .btn-icon{
+        @apply p-4;
+        svg{
+            fill:$primary-cv-color;
+        }
+    }
+    .btn-icon:hover{
+        svg{
+            fill: $white;
+        }
     }
     .section_headline{
         color: $black;
@@ -21,7 +32,7 @@ html{scroll-behavior: smooth;}
         .preheader{
             background-color: $black;
             color: $white;
-            @apply hidden md:flex flex-wrap justify-end py-1 h-6 text-xs p-6;
+            @apply hidden justify-end py-1 h-6 text-xs p-6;
             .flag-icon{
                 @apply mr-0;
             }
