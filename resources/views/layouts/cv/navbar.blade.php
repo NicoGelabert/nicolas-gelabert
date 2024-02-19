@@ -4,7 +4,7 @@
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
     }"
     @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex flex-col justify-between shadow-md z-50 w-full fixed t-0"
+    class="flex flex-col justify-between z-50"
     id="navbar"
 >
     <div class="preheader">
@@ -189,15 +189,7 @@
         </div>
     </div>
 </header>
-<style>
-    #navbar{
-        transition: top 0.3s;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: block;
-    }
-</style>
+
 <script>
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
@@ -208,5 +200,11 @@
         document.getElementById("navbar").style.top = "-90px";
     }
     prevScrollpos = currentScrollPos;
+    
+    if(window.scrollY > window.innerHeight){
+        document.getElementById("navbar").classList.add("scrolled-bottom");
+    }else{
+        document.getElementById("navbar").classList.remove("scrolled-bottom");
+    }
     }
 </script>

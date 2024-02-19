@@ -1,4 +1,51 @@
 <x-guest-layout>
+	<!-- Hero Banner starts -->
+	<div id="hero_banner" class="splide">
+		<div class="splide__track">
+			<ul class="splide__list">
+				<li class="splide__slide" data-splide-interval="15000">
+					<img src="{{ asset ('storage/images/cv/el-chalten-fitz-roy-comprimida.webp')}}" alt="">
+				</li>
+				<li class="splide__slide" data-splide-interval="15000">
+					<img src="{{ asset ('storage/images/cv/el-planetario-buenos-aires-comprimida.webp')}}" alt="">
+				</li>
+			</ul>
+			<div id="hero_banner_caption">
+				<div class="hero_banner_text">
+					<div class="hero_banner_text_first">
+						<h2 class="animated_title" data-value="Diseñador">Diseñador</h2>
+						<h2 class="border_text animated_title" data-value="Gráfico">Gráfico</h2>
+					</div>
+					<div class="hero_banner_text_second">
+						<h2 class="border_text animated_title" data-value="Desarrollador">Desarrollador</h2>
+						<h2 class="animated_title" data-value="Web">Web</h2>
+					</div>
+				</div>
+			</div>
+			<div class="hero_banner_socials">
+				<a href="https://wa.me/34623037048?text=Hola%20Nicolás!%20Te%20escribo%20desde%20tu%20web" target="blank">
+                    <i class="fi fi-brands-whatsapp"></i>
+                </a>
+                <a href="mailto:nico.gelabert@gmail.com" target="blank">
+                    <i class="fi fi-sr-envelope"></i>
+                </a>
+                <a href="https://www.behance.net/nicolasgelabert" target="blank">
+                    <i class="fi fi-brands-behance"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nicolasgelabert/" target="blank" class="linkedin">
+                    <i class="fi fi-brands-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/nicolas.gelabert.dg/" target="blank">
+                    <i class="fi fi-brands-instagram"></i>
+                </a>
+			</div>
+		</div>
+		<div class="splide__progress">
+			<div class="splide__progress__bar">
+		</div>
+  </div>
+	</div>
+	<!-- Hero Banner ends -->
 	<!-- Curriculum starts -->
 	<div class="container pt-32" id="curriculum-vitae">
 		<div class="carousel">
@@ -372,6 +419,41 @@
     }
     content.addEventListener('mouseup', mouseupHandler);
     content.addEventListener('mouseleave', mouseupHandler);
+  });
+});
+
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+let intervals = {};
+
+function startAnimation(titleElement) {
+  let iteration = 0;
+  const originalText = titleElement.dataset.value;
+  const titleId = titleElement.id;
+
+  clearInterval(intervals[titleId]);
+
+  intervals[titleId] = setInterval(() => {
+    titleElement.innerText = originalText
+      .split('')
+      .map((letter, index) => {
+        if (index < iteration) {
+          return originalText[index];
+        }
+        return letters[Math.floor(Math.random() * 26)];
+      })
+      .join('');
+    if (iteration >= originalText.length) {
+      clearInterval(intervals[titleId]);
+    }
+    iteration += 1 / 3;
+  }, 50);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const titleElements = document.querySelectorAll('.animated_title');
+  titleElements.forEach((titleElement, index) => {
+    titleElement.id = `title_${index + 1}`;
+    startAnimation(titleElement);
   });
 });
 

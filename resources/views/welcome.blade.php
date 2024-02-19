@@ -36,7 +36,7 @@
 
         <x-promo-welcome />
 
-        <section id="image-carousel" class="splide my-16 md:mx-16" aria-label="Latest products">
+        <div id="image-carousel" class="splide my-16 md:mx-16" aria-label="Latest products">
             <div class="mb-8 text-center">
                 <h2 class="text-2xl font-bold text-3xl">{{__('Latest products')}}
             </div>
@@ -63,7 +63,7 @@
                     @endforeach
                 </ul>
             </div>
-        </section>
+        </div>
         
         <hr class="mt-24 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100" />
 

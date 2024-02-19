@@ -14,13 +14,15 @@ body{
         }
     }
     h3{
-        color: $black;
+        //color: $black;
         font-weight: 500;
         @apply text-base sm:text-lg md:text-xl lg:text-2xl
     }
-    header, .mobile-menu{
+    .mobile-menu, .demo-header{
         background-color: $white;
         color: $black;
+    }
+    header, .mobile-menu{
         a:hover{
             color:$black;
         }

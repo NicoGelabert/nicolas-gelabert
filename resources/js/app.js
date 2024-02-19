@@ -223,27 +223,60 @@ document.addEventListener("alpine:init", async () => {
 
 Alpine.start();
 
-new Splide( '.splide', {
-  type   : 'loop',
-  perPage: 5,
-  perMove: 1,
-  gap    : '0.5rem',
-  autoplay: true,
-  pagination: true,
-  omitEnd  : true,
-  autoWidth: false,
-  breakpoints: {
-    800: {
-      perPage: 4,
-      gap    : '.7rem',
+document.addEventListener('DOMContentLoaded', function () {
+  new Splide( '#image-carousel', {
+    type   : 'loop',
+    perPage: 5,
+    perMove: 1,
+    gap    : '0.5rem',
+    autoplay: true,
+    pagination: true,
+    omitEnd  : true,
+    autoWidth: false,
+    breakpoints: {
+      800: {
+        perPage: 4,
+        gap    : '.7rem',
+      },
+      640: {
+        perPage: 3,
+        gap    : '.7rem',
+      },
+      480: {
+        perPage: 2,
+        gap    : '.5rem',
+      },
     },
-    640: {
-      perPage: 3,
-      gap    : '.7rem',
+  }).mount();
+  // Tu código de inicialización de Splide aquí
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Tu código de inicialización de Splide aquí
+  new Splide( '#hero_banner', {
+    type   : 'fade',
+    rewind: true,
+    perPage: 1,
+    perMove: 1,
+    autoplay: true,
+    pagination: false,
+    omitEnd  : true,
+    width: '100%',
+    height:'100vh',
+    cover:true,
+    breakpoints: {
+      // 800: {
+      //   perPage: 4,
+      //   gap    : '.7rem',
+      // },
+      // 640: {
+      //   perPage: 3,
+      //   gap    : '.7rem',
+      // },
+      // 480: {
+      //   perPage: 2,
+      //   gap    : '.5rem',
+      // },
     },
-    480: {
-      perPage: 2,
-      gap    : '.5rem',
-    },
-  },
-}).mount();
+  }).mount();
+});
