@@ -2,7 +2,7 @@
     <div class="footer-container flex flex-col md:flex-row max-w-[90%] lg:max-w-[80%] mx-auto mt-16">
         <div class="flex flex-col items-center">
             <div class="logo">
-                <a href="{{ route('welcome') }}" class="flex gap-2">
+                <a href="#" class="flex gap-2">
                     <div>
                         <img src="{{ asset('storage/images/logo-ng.png') }}" alt="">
                     </div>
