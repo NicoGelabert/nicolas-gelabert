@@ -19,6 +19,24 @@
                 Products
             </span>
         </router-link>
+        <router-link :to="{name: 'app.services'}"
+                    class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
+            <span class="mr-2 text-gray-300">
+                <RectangleStackIcon class="w-5"/>
+            </span>
+            <span class="text-xs">
+                Services
+            </span>
+        </router-link>
+        <router-link :to="{name: 'app.projects'}"
+                    class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
+            <span class="mr-2 text-gray-300">
+                <RectangleStackIcon class="w-5"/>
+            </span>
+            <span class="text-xs">
+                Projects
+            </span>
+        </router-link>
         <router-link :to="{name: 'app.orders'}"
                     class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
             <span class="mr-2 text-gray-300">

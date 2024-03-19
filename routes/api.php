@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CustomerController;
@@ -25,6 +27,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 
     Route::apiResource('products', ProductController::class);
+    Route::apiResource('services', ServiceController::class);
+    Route::apiResource('projects', ProjectController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('customers', CustomerController::class);
     Route::get('/countries', [CustomerController::class, 'countries']);
@@ -36,6 +40,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     // Dashboard Routes
     Route::get('/dashboard/customers-count', [DashboardController::class, 'activeCustomers']);
     Route::get('/dashboard/products-count', [DashboardController::class, 'activeProducts']);
+    Route::get('/dashboard/projects-count', [DashboardController::class, 'activeProjects']);
     Route::get('/dashboard/orders-count', [DashboardController::class, 'paidOrders']);
     Route::get('/dashboard/income-amount', [DashboardController::class, 'totalIncome']);
     Route::get('/dashboard/orders-by-country', [DashboardController::class, 'ordersByCountry']);

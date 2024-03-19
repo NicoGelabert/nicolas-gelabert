@@ -28,6 +28,40 @@ export function setUser(state, user) {
     }
     state.products.loading = loading;
   }
+
+  export function setProjects(state, [loading, data = null]) {
+  
+    if (data) {
+      state.projects = {
+        ...state.projects,
+        data: data.data,
+        links: data.meta?.links,
+        page: data.meta.current_page,
+        limit: data.meta.per_page,
+        from: data.meta.from,
+        to: data.meta.to,
+        total: data.meta.total,
+      }
+    }
+    state.projects.loading = loading;
+  }
+
+  export function setServices(state, [loading, data = null]) {
+  
+    if (data) {
+      state.services = {
+        ...state.services,
+        data: data.data,
+        links: data.meta?.links,
+        page: data.meta.current_page,
+        limit: data.meta.per_page,
+        from: data.meta.from,
+        to: data.meta.to,
+        total: data.meta.total,
+      }
+    }
+    state.services.loading = loading;
+  }
   
   export function setUsers(state, [loading, data = null]) {
   

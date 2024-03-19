@@ -97,7 +97,67 @@ export function createProduct({commit}, product) {
 export function deleteProduct({commit}, id) {
   return axiosClient.delete(`/products/${id}`)
 }
+// Projects
+export function getProjects({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
+  commit('setProjects', [true])
+  url = url || '/projects'
+  const params = {
+    per_page: state.projects.limit,
+  }
+  return axiosClient.get(url, {
+    params: {
+      ...params,
+      search, per_page, sort_field, sort_direction
+    }
+  })
+    .then((response) => {
+      commit('setProjects', [false, response.data])
+    })
+    .catch(() => {
+      commit('setProjects', [false])
+    })
+}
 
+export function getProject({commit}, id) {
+  return axiosClient.get(`/projects/${id}`)
+}
+
+export function createProject({commit}, project) {
+  if (project.image instanceof File) {
+    const form = new FormData();
+    form.append('title', project.title);
+    form.append('image', project.image);
+    form.append('description', project.description || '');
+    form.append('published', project.published ? 1 : 0);
+    form.append('location', project.location);
+    project = form;
+  }
+  return axiosClient.post('/projects', project)
+}
+
+export function updateProject({commit}, project) {
+  const id = project.id
+  if (project.image instanceof File) {
+    const form = new FormData();
+    form.append('id', project.id);
+    form.append('title', project.title);
+    form.append('image', project.image);
+    form.append('description', project.description || '');
+    form.append('published', project.published ? 1 : 0);
+    form.append('location', project.location);
+    form.append('_method', 'PUT');
+    project = form;
+  } else {
+    project._method = 'PUT'
+  }
+  return axiosClient.post(`/projects/${id}`, project)
+}
+
+export function deleteProject({commit}, id) {
+  return axiosClient.delete(`/projects/${id}`)
+}
+
+// End Projects
 export function getUsers({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
   commit('setUsers', [true])
   url = url || '/users'
@@ -180,3 +240,60 @@ export function updateProduct({commit}, product) {
   return axiosClient.post(`/products/${id}`, product)
 }
 
+// SERVICES
+export function getServices({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
+  commit('setServices', [true])
+  url = url || '/services'
+  const params = {
+    per_page: state.services.limit,
+  }
+  return axiosClient.get(url, {
+    params: {
+      ...params,
+      search, per_page, sort_field, sort_direction
+    }
+  })
+    .then((response) => {
+      commit('setServices', [false, response.data])
+    })
+    .catch(() => {
+      commit('setServices', [false])
+    })
+}
+
+export function getService({commit}, id) {
+  return axiosClient.get(`/services/${id}`)
+}
+
+export function createService({commit}, service) {
+  if (service.image instanceof File) {
+    const form = new FormData();
+    form.append('title', service.title);
+    form.append('image', service.image);
+    form.append('description', service.description || '');
+    form.append('published', service.published ? 1 : 0);
+    service = form;
+  }
+  return axiosClient.post('/services', service)
+}
+
+export function updateService({commit}, service) {
+  const id = service.id
+  if (service.image instanceof File) {
+    const form = new FormData();
+    form.append('id', service.id);
+    form.append('title', service.title);
+    form.append('image', service.image);
+    form.append('description', service.description || '');
+    form.append('published', service.published ? 1 : 0);
+    form.append('_method', 'PUT');
+    service = form;
+  } else {
+    service._method = 'PUT'
+  }
+  return axiosClient.post(`/services/${id}`, service)
+}
+
+export function deleteService({commit}, id) {
+  return axiosClient.delete(`/services/${id}`)
+}
