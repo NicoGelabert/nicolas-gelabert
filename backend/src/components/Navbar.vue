@@ -86,13 +86,13 @@ function logout() {
     })
 }
 
-const toggleIconLeft = ref(true);
+let toggleIconLeft = ref(true);
 function toggleChevronLeftIcon(){
-  this.toggleIconLeft = !this.toggleIconLeft;
+  toggleIconLeft.value = !toggleIconLeft.value;
 }
-const toggleIconDown = ref(true);
+let toggleIconDown = ref(true);
 function toggleChevronDownIcon(){
-  this.toggleIconDown = !this.toggleIconDown;
+  toggleIconDown.value = !toggleIconDown.value;
 }
 
 </script>
