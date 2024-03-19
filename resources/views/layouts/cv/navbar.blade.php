@@ -44,6 +44,7 @@
                     <a
                         href="#curriculum-vitae"
                         class="relative flex items-center justify-between py-2 px-3 transition-colors underline-hover"
+                        @click="mobileMenuClosed"
                     >
                         <div class="flex items-center">
                             {{ __('Curriculum') }}
@@ -54,6 +55,7 @@
                     <a
                         href="#portfolio"
                         class="relative flex items-center justify-between py-2 px-3 transition-colors underline-hover"
+                        onclick="closeNav()"
                     >
                         <div class="flex items-center">
                             {{ __('Portfolio') }}
@@ -86,6 +88,7 @@
                     <a
                         href="{{ route('welcome') }}"
                         class="block text-center py-2 px-3 rounded shadow-md transition-colors w-full btn-demo"
+                        onclick="closeNav()"
                     >
                         {{ __('Ver Demo') }}
                     </a>
@@ -207,4 +210,12 @@
         document.getElementById("navbar").classList.remove("scrolled-bottom");
     }
     }
+    // function closeNav() {
+    //     const mobileMenu = document.querySelector(".mobile-menu");
+    //     const closeMenu = ()=>{
+    //         if(mobileMenu.style.left = 0){
+    //             document.querySelector(".mobile-menu").style.left = "-220px";
+    //         }
+    //     }
+    // }
 </script>
