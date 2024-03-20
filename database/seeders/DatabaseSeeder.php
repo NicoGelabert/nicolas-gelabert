@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
             // AdminUserSeeder::class,
             // CountrySeeder::class,
             // ProductSeeder::class,
-            // CategoriesSeeder::class,
+            CategoriesSeeder::class,
             // ExperienceSeeder::class,
             // EducationSeeder::class,
-            ServiceSeeder::class,
-            ProjectSeeder::class,
-            SliderImagesSeeder::class,
+            // ServiceSeeder::class,
+            // ProjectSeeder::class,
+            // SliderImagesSeeder::class,
         ]);
     }
 }

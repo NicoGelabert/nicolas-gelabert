@@ -19,7 +19,7 @@
                         class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
                 <header class="py-3 px-4 flex justify-between items-center">
                     <DialogTitle as="h3" class="text-lg leading-6 font-medium text-gray-900">
-                    {{ product.id ? `Update product: "${props.product.title}"` : 'Create new Product' }}
+                    {{ category.id ? `Update category: "${props.category.name}"` : 'Create new Category' }}
                     </DialogTitle>
                     <button
                     @click="closeModal()"
@@ -43,11 +43,8 @@
                 </header>
                 <form @submit.prevent="onSubmit">
                     <div class="bg-white px-4 pt-5 pb-4">
-                    <CustomInput class="mb-2" v-model="product.title" label="Product Title"/>
-                    <CustomInput type="file" class="mb-2" label="Product Image" @change="file => product.image = file"/>
-                    <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description"/>
-                    <CustomInput type="number" class="mb-2" v-model="product.price" label="Price" prepend="$"/>
-                    <CustomInput type="checkbox" class="mb-2" v-model="product.published" label="Published"/>
+                    <CustomInput class="mb-2" v-model="category.name" label="Category Title"/>
+                    <CustomInput type="file" class="mb-2" label="Category Image" @change="file => category.image = file"/>
                     </div>
                     <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button type="submit"
@@ -81,22 +78,19 @@ import Spinner from "../../components/core/Spinner.vue";
 
 const props = defineProps({
   modelValue: Boolean,
-  product: {
+  category: {
     required: true,
     type: Object,
   }
 })
-
-const product = ref({
-  id: props.product.id,
-  title: props.product.title,
-  image: props.product.image,
-  description: props.product.description,
-  price: props.product.price,
-  published: props.product.published
+const category = ref({
+  id: props.category.id,
+  name: props.category.name,
+  image: props.category.image
 })
 
 const loading = ref(false)
+
 
 const emit = defineEmits(['update:modelValue', 'close'])
 
@@ -106,13 +100,10 @@ const show = computed({
 })
 
 onUpdated(() => {
-  product.value = {
-    id: props.product.id,
-    title: props.product.title,
-    image: props.product.image,
-    description: props.product.description,
-    price: props.product.price,
-    published: props.product.published,
+  category.value = {
+    id: props.category.id,
+    name: props.category.name,
+    image: props.category.image,
   }
 })
 
@@ -123,23 +114,23 @@ function closeModal() {
 
 function onSubmit() {
   loading.value = true
-  if (product.value.id) {
-    store.dispatch('updateProduct', product.value)
+  if (category.value.id) {
+    store.dispatch('updateCategory', category.value)
       .then(response => {
         loading.value = false;
         if (response.status === 200) {
           // TODO show notification
-          store.dispatch('getProducts')
+          store.dispatch('getCategories')
           closeModal()
         }
       })
   } else {
-    store.dispatch('createProduct', product.value)
+    store.dispatch('createCategory', category.value)
       .then(response => {
         loading.value = false;
         if (response.status === 201) {
           // TODO show notification
-          store.dispatch('getProducts')
+          store.dispatch('getCategories')
           closeModal()
         }
       })
