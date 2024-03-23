@@ -138,6 +138,8 @@ export function createProduct({commit}, product) {
   if (product.image instanceof File) {
     const form = new FormData();
     form.append('title', product.title);
+    form.append('category', product.category);
+    form.append('categories_id', product.categories_id);
     form.append('image', product.image);
     form.append('description', product.description || '');
     form.append('published', product.published ? 1 : 0);
@@ -281,6 +283,8 @@ export function updateProduct({commit}, product) {
     const form = new FormData();
     form.append('id', product.id);
     form.append('title', product.title);
+    form.append('category', product.category);
+    form.append('categories_id', product.categories_id);
     form.append('image', product.image);
     form.append('description', product.description || '');
     form.append('published', product.published ? 1 : 0);

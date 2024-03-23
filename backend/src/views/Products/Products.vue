@@ -25,14 +25,15 @@ import ProductsTable from "./ProductsTable.vue";
 const DEFAULT_PRODUCT = {
   id: '',
   title: '',
+  category: '',
+  categories_id:'',
   description: '',
   image: '',
   price: ''
 }
-
 const products = computed(() => store.state.products);
 
-const productModel = ref({...DEFAULT_PRODUCT})
+const productModel = ref({...DEFAULT_PRODUCT});
 const showProductModal = ref(false);
 
 function showAddNewModal() {

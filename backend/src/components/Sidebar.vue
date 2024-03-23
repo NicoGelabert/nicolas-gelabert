@@ -13,7 +13,7 @@
         <router-link :to="{name: 'app.categories'}"
                     class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
             <span class="mr-2 text-gray-300">
-                <RectangleStackIcon class="w-5"/>
+                <TagIcon class="w-5"/>
             </span>
             <span class="text-xs">
                 Categories
@@ -22,7 +22,7 @@
         <router-link :to="{name: 'app.products'}"
                     class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
             <span class="mr-2 text-gray-300">
-                <RectangleStackIcon class="w-5"/>
+                <ArchiveBoxIcon class="w-5"/>
             </span>
             <span class="text-xs">
                 Products
@@ -31,7 +31,7 @@
         <router-link :to="{name: 'app.services'}"
                     class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
             <span class="mr-2 text-gray-300">
-                <RectangleStackIcon class="w-5"/>
+                <FolderOpenIcon class="w-5"/>
             </span>
             <span class="text-xs">
                 Services
@@ -88,7 +88,7 @@
 
 <script setup>
 
-import { BuildingStorefrontIcon, RectangleStackIcon, ClipboardDocumentListIcon, UsersIcon, UserGroupIcon, PresentationChartLineIcon } from '@heroicons/vue/24/outline'
+import { BuildingStorefrontIcon, TagIcon, ArchiveBoxIcon, FolderOpenIcon, RectangleStackIcon, ClipboardDocumentListIcon, UsersIcon, UserGroupIcon, PresentationChartLineIcon } from '@heroicons/vue/24/outline'
 
 </script>
 
@@ -98,6 +98,7 @@ import { BuildingStorefrontIcon, RectangleStackIcon, ClipboardDocumentListIcon, 
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap:0.75rem;
   a{
     width: 100%;    
   }
