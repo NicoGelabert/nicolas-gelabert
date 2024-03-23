@@ -44,6 +44,22 @@
                 <form @submit.prevent="onSubmit">
                     <div class="bg-white px-4 pt-5 pb-4">
                     <CustomInput class="mb-2" v-model="product.title" label="Product Title"/>
+                    <div class="my-8 flex flex-col gap-4">
+                      <DialogTitle as="h4" class="text-md leading-6 font-medium text-gray-900">
+                        Categories
+                      </DialogTitle>
+                      <ul class="flex justify-between" label="Categories">
+                        <li v-for="(category, index) of categories.data" :key="index">
+                          <button :value="category.id" :class="[
+                            'px-4 py-2 rounded-lg text-xs uppercase font-bold hover:bg-indigo-600 hover:text-white active:bg-indigo-600 active:text-white focus:bg-indigo-600 focus:text-white',
+                            {
+                              'bg-indigo-600 text-white': category.id === product.categories_id,
+                              'bg-indigo-200 text-indigo-600': category.id !== product.categories_id,
+                            }
+                          ]" @click.prevent="updateCategory(category.id)">{{category.name}}</button>
+                        </li>
+                      </ul>
+                    </div>
                     <CustomInput type="file" class="mb-2" label="Product Image" @change="file => product.image = file"/>
                     <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description"/>
                     <CustomInput type="number" class="mb-2" v-model="product.price" label="Price" prepend="$"/>
@@ -51,8 +67,7 @@
                     </div>
                     <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button type="submit"
-                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
-                            text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500">
+                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-indigo-800 text-base font-medium sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm text-white hover:bg-white hover:text-indigo-800">
                         Submit
                     </button>
                     <button type="button"
@@ -72,31 +87,42 @@
 
 <script setup>
 
-import {computed, onUpdated, ref} from 'vue'
+import {computed, onUpdated, onMounted, ref} from 'vue'
 import {Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {ExclamationCircleIcon} from '@heroicons/vue/24/solid';
 import CustomInput from "../../components/core/CustomInput.vue";
 import store from "../../store/index.js";
 import Spinner from "../../components/core/Spinner.vue";
 
-const product = ref({
-  id: props.product.id,
-  title: props.product.title,
-  image: props.product.image,
-  description: props.product.description,
-  price: props.product.price,
-  published: props.product.published
-})
-
-const loading = ref(false)
-
 const props = defineProps({
   modelValue: Boolean,
   product: {
     required: true,
     type: Object,
-  }
+  },
 })
+const product = ref({
+  id: props.product.id,
+  title: props.product.title,
+  category:props.product.category,
+  categories_id:props.product.categories_id,
+  image: props.product.image,
+  description: props.product.description,
+  price: props.product.price,
+  published: props.product.published,
+  selectedCategoryId: props.product.categories_id,
+})
+
+const categories = computed(() => store.state.categories);
+onMounted(() => {
+  getCategories();
+})
+function getCategories(url = null) {
+  store.dispatch("getCategories", {
+    url,
+  });
+}
+const loading = ref(false)
 
 const emit = defineEmits(['update:modelValue', 'close'])
 
@@ -105,10 +131,15 @@ const show = computed({
   set: (value) => emit('update:modelValue', value)
 })
 
+function updateCategory(categoryId) {
+    product.value.categories_id = categoryId;
+}
 onUpdated(() => {
   product.value = {
     id: props.product.id,
     title: props.product.title,
+    category:props.product.category,
+    categories_id:props.product.categories_id,
     image: props.product.image,
     description: props.product.description,
     price: props.product.price,
@@ -120,6 +151,7 @@ function closeModal() {
   show.value = false
   emit('close')
 }
+
 
 function onSubmit() {
   loading.value = true
@@ -149,7 +181,6 @@ function onSubmit() {
       })
   }
 }
-
 </script>
 
 <style>

@@ -3,7 +3,7 @@
         <div class="flex justify-between border-b-2 pb-3">
         <div class="flex items-center">
             <span class="whitespace-nowrap mr-3">Per Page</span>
-            <select @change="getProducts(null)" v-model="perPage"
+            <select @change="getCategories(null)" v-model="perPage"
                     class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
             <option value="5">5</option>
             <option value="10">10</option>
@@ -11,38 +11,30 @@
             <option value="50">50</option>
             <option value="100">100</option>
             </select>
-            <span class="ml-3">Found {{products.total}} products</span>
+            <span class="ml-3">Found {{categories.total}} categories</span>
         </div>
         <div>
-            <input v-model="search" @change="getProducts(null)"
+            <input v-model="search" @change="getCategories(null)"
                 class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Type to Search products">
+                placeholder="Type to Search categories">
         </div>
         </div>
 
         <table class="table-auto w-full">
         <thead>
         <tr>
-            <TableHeaderCell field="id" :sort-field="sortField" :sort-direction="sortDirection" @click="sortProducts('id')">
+            <TableHeaderCell field="id" :sort-field="sortField" :sort-direction="sortDirection" @click="sortCategories('id')">
             ID
             </TableHeaderCell>
             <TableHeaderCell field="image" :sort-field="sortField" :sort-direction="sortDirection">
             Image
             </TableHeaderCell>
-            <TableHeaderCell field="title" :sort-field="sortField" :sort-direction="sortDirection"
-                            @click="sortProducts('title')">
-            Title
-            </TableHeaderCell>
-            <TableHeaderCell field="category" :sort-field="sortField" :sort-direction="sortDirection"
-                            @click="sortProducts('category')">
-            Category
-            </TableHeaderCell>
-            <TableHeaderCell field="price" :sort-field="sortField" :sort-direction="sortDirection"
-                            @click="sortProducts('price')">
-            Price
+            <TableHeaderCell field="name" :sort-field="sortField" :sort-direction="sortDirection"
+                            @click="sortCategories('name')">
+            Name
             </TableHeaderCell>
             <TableHeaderCell field="updated_at" :sort-field="sortField" :sort-direction="sortDirection"
-                            @click="sortProducts('updated_at')">
+                            @click="sortCategories('updated_at')">
             Last Updated At
             </TableHeaderCell>
             <TableHeaderCell field="actions">
@@ -50,33 +42,27 @@
             </TableHeaderCell>
         </tr>
         </thead>
-        <tbody v-if="products.loading || !products.data.length">
+        <tbody v-if="categories.loading || !categories.data.length">
         <tr>
             <td colspan="6">
-            <Spinner v-if="products.loading"/>
+            <Spinner v-if="categories.loading"/>
             <p v-else class="text-center py-8 text-gray-700">
-                There are no products
+                There are no categories
             </p>
             </td>
         </tr>
         </tbody>
         <tbody v-else>
-        <tr v-for="(product, index) of products.data" :key="index">
-            <td class="border-b p-2 ">{{ product.id }}</td>
+        <tr v-for="(category, index) of categories.data" :key="index">
+            <td class="border-b p-2 ">{{ category.id }}</td>
             <td class="border-b p-2 ">
-            <img class="w-16 h-16 object-cover" :src="product.image_url" :alt="product.title">
+            <img class="w-16 h-16 object-cover" :src="category.image_url" :alt="category.name">
             </td>
             <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
-            {{ product.title }}
-            </td>
-            <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
-            {{ product.category }}
-            </td>
-            <td class="border-b p-2">
-            {{ $filters.currencyUSD(product.price) }}
+            {{ category.name }}
             </td>
             <td class="border-b p-2 ">
-            {{ product.updated_at }}
+            {{ category.updated_at }}
             </td>
             <td class="border-b p-2 ">
             <Menu as="div" class="relative inline-block text-left">
@@ -108,7 +94,7 @@
                             active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                             'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                         ]"
-                        @click="editProduct(product)"
+                        @click="editCategory(category)"
                         >
                         <PencilSquareIcon
                             :active="active"
@@ -124,7 +110,7 @@
                             active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                             'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                         ]"
-                        @click="deleteProduct(product)"
+                        @click="deleteCategory(category)"
                         >
                         <TrashIcon
                             :active="active"
@@ -143,18 +129,18 @@
         </tbody>
         </table>
 
-        <div v-if="!products.loading" class="flex justify-between items-center mt-5">
-        <div v-if="products.data.length">
-            Showing from {{ products.from }} to {{ products.to }}
+        <div v-if="!categories.loading" class="flex justify-between items-center mt-5">
+        <div v-if="categories.data.length">
+            Showing from {{ categories.from }} to {{ categories.to }}
         </div>
         <nav
-            v-if="products.total > products.limit"
+            v-if="categories.total > categories.limit"
             class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px"
             aria-label="Pagination"
         >
             <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
             <a
-            v-for="(link, i) of products.links"
+            v-for="(link, i) of categories.links"
             :key="i"
             :disabled="!link.url"
             href="#"
@@ -166,7 +152,7 @@
                     ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
                     : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
                 i === 0 ? 'rounded-l-md' : '',
-                i === products.links.length - 1 ? 'rounded-r-md' : '',
+                i === categories.links.length - 1 ? 'rounded-r-md' : '',
                 !link.url ? ' bg-gray-100 text-gray-700': ''
                 ]"
             v-html="link.label"
@@ -182,25 +168,25 @@
 import {computed, onMounted, ref} from "vue";
 import store from "../../store";
 import Spinner from "../../components/core/Spinner.vue";
-import {PRODUCTS_PER_PAGE} from "../../constants";
+import {CATEGORIES_PER_PAGE} from "../../constants";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {EllipsisVerticalIcon, PencilSquareIcon, TrashIcon} from '@heroicons/vue/24/solid';
-import ProductModal from "./ProductModal.vue";
+import CategoryModal from "./CategoryModal.vue";
 
-const perPage = ref(PRODUCTS_PER_PAGE);
+const perPage = ref(CATEGORIES_PER_PAGE);
 const search = ref('');
-const products = computed(() => store.state.products);
+const categories = computed(() => store.state.categories);
 const sortField = ref('updated_at');
 const sortDirection = ref('desc')
 
-const product = ref({})
-const showProductModal = ref(false);
+const category = ref({})
+const showCategoryModal = ref(false);
 
 const emit = defineEmits(['clickEdit'])
 
 onMounted(() => {
-  getProducts();
+  getCategories();
 })
 
 function getForPage(ev, link) {
@@ -209,11 +195,11 @@ function getForPage(ev, link) {
     return;
   }
 
-  getProducts(link.url)
+  getCategories(link.url)
 }
 
-function getProducts(url = null) {
-  store.dispatch("getProducts", {
+function getCategories(url = null) {
+  store.dispatch("getCategories", {
     url,
     search: search.value,
     per_page: perPage.value,
@@ -222,7 +208,7 @@ function getProducts(url = null) {
   });
 }
 
-function sortProducts(field) {
+function sortCategories(field) {
   if (field === sortField.value) {
     if (sortDirection.value === 'desc') {
       sortDirection.value = 'asc'
@@ -234,25 +220,25 @@ function sortProducts(field) {
     sortDirection.value = 'asc'
   }
 
-  getProducts()
+  getCategories()
 }
 
 function showAddNewModal() {
-  showProductModal.value = true
+  showCategoryModal.value = true
 }
 
-function deleteProduct(product) {
-  if (!confirm(`Are you sure you want to delete the product?`)) {
+function deleteCategory(category) {
+  if (!confirm(`Are you sure you want to delete the category?`)) {
     return
   }
-  store.dispatch('deleteProduct', product.id)
+  store.dispatch('deleteCategory', category.id)
     .then(res => {
       // TODO Show notification
-      store.dispatch('getProducts')
+      store.dispatch('getCategories')
     })
 }
 
-function editProduct(p) {
+function editCategory(p) {
   emit('clickEdit', p)
 }
 

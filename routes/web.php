@@ -30,7 +30,7 @@ Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
     Route::get('/demo/categories', [CategoriesController::class, 'index'])->name('categories.index');
     Route::get('/demo/categories/{categories:slug}', [CategoriesController::class, 'view'])->name('categories.view');
-    // Route::get('demo/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('demo/products', [ProductController::class, 'index'])->name('product.index');
     Route::get('demo/categories/{categories:slug}/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
     Route::prefix('demo/cart')->name('cart.')->group(function () {

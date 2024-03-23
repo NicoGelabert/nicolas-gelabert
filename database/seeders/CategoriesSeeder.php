@@ -17,32 +17,32 @@ class CategoriesSeeder extends Seeder
         DB::table('categories')->insert([
             'name' => 'Nikon',
             'slug' => 'nikon',
-            'icon' => 'storage/iconos/nikon.svg'
+            'image' => 'storage/iconos/nikon.svg'
         ]);
         DB::table('categories')->insert([
             'name' => 'Olympus',
             'slug' => 'olympus',
-            'icon' => 'storage/iconos/olympus.svg'
+            'image' => 'storage/iconos/olympus.svg'
         ]);
         DB::table('categories')->insert([
             'name' => 'Pentax',
             'slug' => 'pentax',
-            'icon' => 'storage/iconos/pentax.svg'
+            'image' => 'storage/iconos/pentax.svg'
         ]);
         DB::table('categories')->insert([
             'name' => 'Canon',
             'slug' => 'canon',
-            'icon' => 'storage/iconos/canon.svg'
+            'image' => 'storage/iconos/canon.svg'
         ]);
         DB::table('categories')->insert([
             'name' => 'Fujifilm',
             'slug' => 'fujifilm',
-            'icon' => 'storage/iconos/fujifilm.svg'
+            'image' => 'storage/iconos/fujifilm.svg'
         ]);
         DB::table('categories')->insert([
             'name' => 'Leica',
             'slug' => 'leica',
-            'icon' => 'storage/iconos/leica.svg'
+            'image' => 'storage/iconos/leica.svg'
         ]);
     }
 }

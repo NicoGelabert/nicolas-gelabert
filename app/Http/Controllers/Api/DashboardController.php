@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\OrderResource;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\Service;
@@ -26,6 +27,14 @@ class DashboardController extends Controller
     public function activeCustomers()
     {
         return Customer::where('status', CustomerStatus::Active->value)->count();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function activeCategories()
+    {
+        return Categories::all();
     }
 
     /**

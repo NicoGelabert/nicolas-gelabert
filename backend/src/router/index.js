@@ -6,6 +6,7 @@ import ResetPassword from "../views/ResetPassword.vue";
 import AppLayout from '../components/AppLayout.vue'
 import store from "../store";
 import NotFound from "../views/NotFound.vue";
+import Categories from "../views/Categories/Categories.vue";
 import Products from "../views/Products/Products.vue";
 import Services from "../views/Services/Services.vue";
 import Projects from "../views/Projects/Projects.vue";
@@ -37,6 +38,11 @@ const routes = [
         path: 'dashboard',
         name: 'app.dashboard',
         component: Dashboard
+      },
+      {
+        path: 'categories',
+        name: 'app.categories',
+        component: Categories
       },
       {
         path: 'products',
