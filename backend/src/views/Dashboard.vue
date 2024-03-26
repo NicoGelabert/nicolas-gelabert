@@ -166,11 +166,13 @@ function updateDashboard() {
         data: []
       }]
     }
+    console.log(countries);
     countries.forEach(c => {
       chartData.labels.push(c.name);
       chartData.datasets[0].data.push(c.count);
     })
     ordersByCountry.value = chartData
+    console.log(chartData);
   })
   
   axiosClient.get(`/dashboard/latest-customers`, {params: {d}}).then(({data: customers}) => {
